@@ -12,17 +12,17 @@ export default function DestiladosTable({ groups, onAddToOrder, orderItems }) {
   };
 
   return (
-    <div className="w-full bg-[#d8e5d6] rounded-[24px] p-6 sm:p-8 border border-[#00473c]/20 shadow-sm">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-[#00473c]/20">
+    <div className="w-full bg-[#121214] rounded-[24px] p-6 sm:p-8 border border-[#27272a] shadow-xl">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-[#27272a]">
         <div>
-          <div className="flex items-center gap-2 text-[#00473c] text-xs font-bold uppercase tracking-[0.05em] mb-1">
+          <div className="flex items-center gap-2 text-[#e6ff55] text-xs font-extrabold uppercase tracking-[0.05em] mb-1">
             <Wine className="w-4 h-4" />
             SELECCIÓN DE LA CAVA
           </div>
-          <h3 className="text-3xl sm:text-5xl font-display font-normal text-[#00473c] tracking-tight">
+          <h3 className="text-3xl sm:text-5xl font-display font-normal text-white tracking-tight">
             Destilados Premium
           </h3>
-          <p className="text-sm text-[#0e150e]/70 font-normal mt-1">
+          <p className="text-sm text-[#a1a1aa] font-normal mt-1">
             Formatos por copa de degustación o botella completa para mesa.
           </p>
         </div>
@@ -33,10 +33,10 @@ export default function DestiladosTable({ groups, onAddToOrder, orderItems }) {
             <button
               key={group.categoryName}
               onClick={() => setSelectedTab(group.categoryName)}
-              className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-[0.05em] whitespace-nowrap transition-all ${
+              className={`px-4 py-2 rounded-full text-xs font-extrabold uppercase tracking-[0.05em] whitespace-nowrap transition-all ${
                 selectedTab === group.categoryName
-                  ? "bg-[#00473c] text-[#e6ff55] shadow-xs"
-                  : "bg-[#f4f3e7] text-[#00473c] hover:bg-white border border-[#00473c]/20"
+                  ? "bg-[#e6ff55] text-black shadow-md"
+                  : "bg-[#18181b] text-[#a1a1aa] hover:text-white border border-[#27272a]"
               }`}
             >
               {group.categoryName}
@@ -49,20 +49,20 @@ export default function DestiladosTable({ groups, onAddToOrder, orderItems }) {
       <div className="mt-6 overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="border-b border-[#00473c]/20 text-xs text-[#00473c] uppercase tracking-wider font-bold">
+            <tr className="border-b border-[#27272a] text-xs text-[#a1a1aa] uppercase tracking-wider font-bold">
               <th className="py-3.5 px-4">Destilado / Vino</th>
               <th className="py-3.5 px-4 text-center">Copa</th>
               <th className="py-3.5 px-4 text-center">Botella</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#00473c]/10 text-sm">
+          <tbody className="divide-y divide-[#27272a]/60 text-sm">
             {activeGroup.items.map((item, idx) => {
               const isAddedCopa = checkIsAdded(item.name, 'copa');
               const isAddedBotella = checkIsAdded(item.name, 'botella');
 
               return (
-                <tr key={idx} className="hover:bg-[#f4f3e7]/50 transition-colors">
-                  <td className="py-4 px-4 font-bold text-[#0e150e]">
+                <tr key={idx} className="hover:bg-[#18181b] transition-colors">
+                  <td className="py-4 px-4 font-bold text-white">
                     {item.name}
                   </td>
                   
@@ -70,7 +70,7 @@ export default function DestiladosTable({ groups, onAddToOrder, orderItems }) {
                   <td className="py-4 px-4 text-center whitespace-nowrap">
                     {item.copa ? (
                       <div className="flex items-center justify-center gap-2">
-                        <span className="font-extrabold text-[#00473c]">${item.copa.toLocaleString('es-MX')}</span>
+                        <span className="font-extrabold text-[#e6ff55]">${item.copa.toLocaleString('es-MX')}</span>
                         <button
                           onClick={() => onAddToOrder({
                             id: `destilado-${item.name}-copa`,
@@ -79,8 +79,8 @@ export default function DestiladosTable({ groups, onAddToOrder, orderItems }) {
                           })}
                           className={`p-1.5 rounded-full text-xs font-bold transition-all ${
                             isAddedCopa 
-                              ? "bg-[#00473c] text-[#e6ff55]" 
-                              : "bg-[#e6ff55] text-[#0e150e] hover:bg-[#d8f533]"
+                              ? "bg-white text-black" 
+                              : "bg-[#e6ff55] text-black hover:bg-[#d8f533]"
                           }`}
                           title="Agregar Copa"
                         >
@@ -88,7 +88,7 @@ export default function DestiladosTable({ groups, onAddToOrder, orderItems }) {
                         </button>
                       </div>
                     ) : (
-                      <span className="text-[#8c8c82] text-xs">—</span>
+                      <span className="text-[#52525b] text-xs">—</span>
                     )}
                   </td>
 
@@ -96,7 +96,7 @@ export default function DestiladosTable({ groups, onAddToOrder, orderItems }) {
                   <td className="py-4 px-4 text-center whitespace-nowrap">
                     {item.botella ? (
                       <div className="flex items-center justify-center gap-2">
-                        <span className="font-extrabold text-[#00473c]">${item.botella.toLocaleString('es-MX')}</span>
+                        <span className="font-extrabold text-[#e6ff55]">${item.botella.toLocaleString('es-MX')}</span>
                         <button
                           onClick={() => onAddToOrder({
                             id: `destilado-${item.name}-botella`,
@@ -105,8 +105,8 @@ export default function DestiladosTable({ groups, onAddToOrder, orderItems }) {
                           })}
                           className={`p-1.5 rounded-full text-xs font-bold transition-all ${
                             isAddedBotella 
-                              ? "bg-[#00473c] text-[#e6ff55]" 
-                              : "bg-[#e6ff55] text-[#0e150e] hover:bg-[#d8f533]"
+                              ? "bg-white text-black" 
+                              : "bg-[#e6ff55] text-black hover:bg-[#d8f533]"
                           }`}
                           title="Agregar Botella"
                         >
@@ -114,7 +114,7 @@ export default function DestiladosTable({ groups, onAddToOrder, orderItems }) {
                         </button>
                       </div>
                     ) : (
-                      <span className="text-[#8c8c82] text-xs">—</span>
+                      <span className="text-[#52525b] text-xs">—</span>
                     )}
                   </td>
                 </tr>

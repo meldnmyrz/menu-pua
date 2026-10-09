@@ -87,7 +87,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f4f3e7] text-[#0e150e] font-sans selection:bg-[#e6ff55] selection:text-[#00473c]">
+    <div className="min-h-screen flex flex-col bg-[#050505] text-[#f4f4f5] font-sans selection:bg-[#e6ff55] selection:text-black">
       
       {/* Header Bar */}
       <Header
@@ -104,7 +104,7 @@ export default function App() {
         filteredCount={totalFilteredCount}
       />
 
-      {/* Sweetgreen-style Category Nav Tabs */}
+      {/* Sweetgreen-style Dark Category Nav Tabs */}
       <CategoryNav
         categories={currentSection.categories}
         activeCategoryId={activeCategoryId}
@@ -115,30 +115,37 @@ export default function App() {
       {/* Main Section Content Area */}
       <main className="flex-1 max-w-[1200px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
         
-        {/* Sweetgreen Hero / Band Banner */}
-        <div className="relative rounded-[24px] p-8 sm:p-12 overflow-hidden bg-[#d8e5d6] border border-[#00473c]/15 shadow-xs">
+        {/* Black Theme Hero / Band Banner */}
+        <div className="relative rounded-[24px] p-8 sm:p-12 overflow-hidden bg-[#121214] border border-[#27272a] shadow-2xl">
           <div className="max-w-2xl relative z-10">
-            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.05em] text-[#00473c] mb-3">
-              {activeSectionId === "platillos" ? <Flame className="w-4 h-4" /> : <Wine className="w-4 h-4" />}
+            <div className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.05em] text-[#e6ff55] mb-3">
+              {activeSectionId === "platillos" ? <Flame className="w-4 h-4 text-[#e6ff55]" /> : <Wine className="w-4 h-4 text-[#e6ff55]" />}
               {currentSection.name}
             </div>
-            <h2 className="text-4xl sm:text-6xl font-display font-normal text-[#00473c] leading-[0.85] tracking-tight">
+            <h2 className="text-4xl sm:text-6xl font-display font-normal text-white leading-[0.85] tracking-tight">
               {currentSection.shortName === "Platillos" ? "GASTRONOMÍA A LAS BRASAS" : "MIXOLOGÍA & CAVA DE VINOS"}
             </h2>
-            <p className="text-sm sm:text-base text-[#0e150e]/80 font-normal mt-4 leading-relaxed">
+            <p className="text-sm sm:text-base text-[#a1a1aa] font-normal mt-4 leading-relaxed">
               {currentSection.description}
             </p>
           </div>
+
+          {currentSection.heroBanner && (
+            <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden md:block opacity-25 pointer-events-none">
+              <img src={currentSection.heroBanner} alt="Drinks" className="w-full h-full object-cover filter blur-xs" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#121214] via-[#121214]/80 to-transparent" />
+            </div>
+          )}
         </div>
 
         {/* Section Content: Categories */}
         {filteredCategories.length === 0 ? (
-          <div className="text-center py-16 bg-[#d8e5d6]/50 rounded-[24px] border border-[#00473c]/15">
-            <Sparkles className="w-10 h-10 text-[#00473c] mx-auto mb-3 opacity-60" />
-            <h3 className="text-2xl font-display text-[#00473c]">
+          <div className="text-center py-16 bg-[#121214] rounded-[24px] border border-[#27272a]">
+            <Sparkles className="w-10 h-10 text-[#e6ff55] mx-auto mb-3 opacity-80" />
+            <h3 className="text-2xl font-display text-white">
               No se encontraron opciones
             </h3>
-            <p className="text-xs text-[#0e150e]/70 mt-1 max-w-sm mx-auto">
+            <p className="text-xs text-[#a1a1aa] mt-1 max-w-sm mx-auto">
               Intenta buscar con otra palabra clave como "Rib Eye", "Martini", "Salmón" o "Pasta".
             </p>
             <button
@@ -155,18 +162,18 @@ export default function App() {
               <section key={category.id} id={`category-${category.id}`} className="space-y-6 scroll-mt-32">
                 
                 {/* Category Section Header */}
-                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between border-b border-[#00473c]/20 pb-4 gap-2">
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between border-b border-[#27272a] pb-4 gap-2">
                   <div>
-                    <h3 className="text-3xl sm:text-5xl font-display font-normal text-[#0e150e]">
+                    <h3 className="text-3xl sm:text-5xl font-display font-normal text-white">
                       {category.name}
                     </h3>
                     {category.subtitle && (
-                      <p className="text-xs text-[#00473c] font-bold uppercase tracking-[0.05em] mt-1">
+                      <p className="text-xs text-[#e6ff55] font-extrabold uppercase tracking-[0.05em] mt-1">
                         {category.subtitle}
                       </p>
                     )}
                   </div>
-                  <span className="text-xs text-[#00473c] font-bold uppercase tracking-[0.05em]">
+                  <span className="text-xs text-[#e6ff55] font-bold uppercase tracking-[0.05em]">
                     {category.isTableLayout
                       ? `${category.groups?.length || 0} Familias`
                       : `${category.items?.length || 0} Opciones`}
@@ -181,7 +188,7 @@ export default function App() {
                     orderItems={orderItems}
                   />
                 ) : (
-                  /* 3-Column Sweetgreen Product Card Grid */
+                  /* 3-Column Product Card Grid */
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {category.items.map((item) => (
                       <MenuItemCard

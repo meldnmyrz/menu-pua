@@ -1,9 +1,4 @@
 import React from 'react';
-import { 
-  Wine, Flame, Soup, Salad, Beef, CookingPot, 
-  Fish, Sparkles, UtensilsCrossed, Cake, Smile, 
-  GlassWater, Beer, Coffee 
-} from 'lucide-react';
 
 export default function CategoryNav({
   categories,
@@ -22,9 +17,9 @@ export default function CategoryNav({
   };
 
   return (
-    <div className="sticky top-0 z-30 w-full sweet-nav border-b border-[#00473c]/15 shadow-xs">
+    <div className="sticky top-0 z-30 w-full sweet-nav-dark shadow-xl">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-6 py-3.5 overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-8 py-4 overflow-x-auto no-scrollbar">
           
           <button
             onClick={() => scrollToCategory("all")}
@@ -33,14 +28,14 @@ export default function CategoryNav({
             <span
               className={`text-lg sm:text-2xl font-display uppercase tracking-tight transition-colors ${
                 activeCategoryId === "all"
-                  ? "text-[#0e150e] font-normal"
-                  : "text-[#8c8c82] hover:text-[#0e150e]"
+                  ? "text-white font-normal"
+                  : "text-[#a1a1aa] hover:text-white"
               }`}
             >
               TODOS LOS PLATILLOS
             </span>
             {activeCategoryId === "all" && (
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00473c] mt-1" />
+              <span className="w-2 h-2 rounded-full bg-[#e6ff55] mt-1 shadow-xs" />
             )}
           </button>
 
@@ -56,19 +51,19 @@ export default function CategoryNav({
                 <span
                   className={`text-lg sm:text-2xl font-display uppercase tracking-tight transition-colors flex items-center gap-2 ${
                     isActive
-                      ? "text-[#0e150e] font-normal"
-                      : "text-[#8c8c82] hover:text-[#0e150e]"
+                      ? "text-white font-normal"
+                      : "text-[#a1a1aa] hover:text-white"
                   }`}
                 >
                   <span>{cat.name}</span>
                   {cat.items?.length && (
-                    <span className="text-xs font-sans text-[#00473c] font-bold">
+                    <span className="text-xs font-sans text-[#e6ff55] font-extrabold">
                       ({cat.items.length})
                     </span>
                   )}
                 </span>
                 {isActive && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00473c] mt-1" />
+                  <span className="w-2 h-2 rounded-full bg-[#e6ff55] mt-1 shadow-xs" />
                 )}
               </button>
             );

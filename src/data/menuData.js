@@ -4,6 +4,7 @@ export const MENU_DATA = {
     subtitle: "Brasa y Vino",
     tagline: "Menú Gastronómico & Mixología de Autor",
     description: "Cortes de carne Angus a las brasas, maridajes exclusivos, cocina de mar y mixología contemporánea.",
+    logo: "/assets/images/pua_logo_official.jpg",
     phone: "Reserva en Mesa",
     instagram: "@puabrasayvino"
   },
@@ -26,7 +27,8 @@ export const MENU_DATA = {
               price: 330,
               description: "Pieza de suave camembert arropado de chutney de pera, frutas del bosque, jamón serrano y arúgula.",
               tags: ["Maridaje", "Chef Pick"],
-              pairing: "Casa Madero 2V / Chardonnay"
+              pairing: "Casa Madero 2V / Chardonnay",
+              image: "/assets/images/material_pua/dish_1.jpg"
             },
             {
               id: "mar-2",
@@ -34,7 +36,8 @@ export const MENU_DATA = {
               price: 345,
               description: "Corte fino realizado al momento en mesa, que resalta la textura y complejidad aromática de este jamón de alta calidad. Su curación prolongada de 24 meses revela matices intensos, untuosos y delicadamente salinos, ofreciendo una experiencia auténtica y refinada.",
               tags: ["Curado 24 Meses", "Servicio en Mesa", "Premium"],
-              pairing: "Casa Madero Cabernet Sauvignon / Vino Tinto Reserva"
+              pairing: "Casa Madero Cabernet Sauvignon / Vino Tinto Reserva",
+              image: "/assets/images/material_pua/dish_2.jpg"
             },
             {
               id: "mar-3",
@@ -42,7 +45,8 @@ export const MENU_DATA = {
               price: 210,
               description: "Base de delicada salsa italiana acompañada de jitomate deshidratado, arúgula fresca, alcaparras y jamón ibérico de excelente curación. Una armonía de sabores del viejo continente.",
               tags: ["4 piezas", "Entrante"],
-              pairing: "Negroni o Aperol Spritz"
+              pairing: "Negroni o Aperol Spritz",
+              image: "/assets/images/material_pua/dish_3.jpg"
             },
             {
               id: "mar-4",
@@ -50,7 +54,8 @@ export const MENU_DATA = {
               price: 210,
               description: "Salmón sellado a las finas hierbas, servido con un dip cremoso de chipotle especiado y cebolla desflemada. Una propuesta sutilmente ahumada con matices delicados.",
               tags: ["4 piezas", "Mar"],
-              pairing: "Brisa del Mar / Casa Madero Chardonnay"
+              pairing: "Brisa del Mar / Casa Madero Chardonnay",
+              image: "/assets/images/material_pua/dish_4.jpg"
             },
             {
               id: "mar-5",
@@ -58,7 +63,8 @@ export const MENU_DATA = {
               price: 210,
               description: "Fina combinación de manzana caramelizada y queso camembert. Un contraste entre dulzura y suavidad que seduce al paladar con cada bocado.",
               tags: ["4 piezas", "Insignia"],
-              pairing: "Martini Tropical / Clericot"
+              pairing: "Martini Tropical / Clericot",
+              image: "/assets/images/material_pua/dish_5.jpg"
             },
             {
               id: "mar-6",
@@ -66,7 +72,8 @@ export const MENU_DATA = {
               price: 375,
               description: "Cuidadosa selección de quesos, frutas de temporada y frutos secos.",
               tags: ["Para Compartir", "Artesanal"],
-              pairing: "Casa Madero 3V"
+              pairing: "Casa Madero 3V",
+              image: "/assets/images/material_pua/dish_6.jpg"
             }
           ]
         },
@@ -80,35 +87,40 @@ export const MENU_DATA = {
               name: "Portobellos",
               price: 280,
               description: "Selección a elegir: • Gratinados con puntas de picaña y cebolla caramelizada • Horneados con mantequilla, higos, jamón serrano y miel de agave • Horneados con chimichurri y pesto, servidos con cherrys confitados, albahaca y parmesano.",
-              tags: ["3 Opciones de Preparación", "Gourmet"]
+              tags: ["3 Preparaciones", "Gourmet"],
+              image: "/assets/images/material_pua/dish_7.jpg"
             },
             {
               id: "ent-2",
               name: "Espárragos",
               price: 185,
               description: "Envueltos en tocino, con queso parmesano y reducción de balsámico y vino tinto.",
-              tags: ["Clásico Brasa"]
+              tags: ["Clásico Brasa"],
+              image: "/assets/images/material_pua/dish_8.jpg"
             },
             {
               id: "ent-3",
               name: "Betabel Rostizado",
               price: 240,
               description: "Gajos de betabel rostizado glaseado con reducción de balsámico, servido sobre cama de queso de cabra.",
-              tags: ["Vegetariano Options"]
+              tags: ["Vegetariano"],
+              image: "/assets/images/material_pua/dish_9.jpg"
             },
             {
               id: "ent-4",
               name: "Coliflor al Huichol",
               price: 230,
               description: "Barnizada en alioli de huichol, montada sobre una cama de mayo de ajo rostizado.",
-              tags: ["Picante Sutil"]
+              tags: ["Picante Sutil"],
+              image: "/assets/images/material_pua/dish_10.jpg"
             },
             {
               id: "ent-5",
               name: "Chicharrón de la Ramos",
               price: 350,
               description: "Frito al momento, acompañado de guacamole y totopos.",
-              tags: ["Para compartir", "Favorito"]
+              tags: ["Para compartir", "Favorito"],
+              image: "/assets/images/material_pua/dish_11.jpg"
             },
             {
               id: "ent-6",
@@ -116,7 +128,8 @@ export const MENU_DATA = {
               price: 360,
               description: "Exquisito hueso de res horneado con salsas negras con pulpo al ajillo receta secreta de la casa, acompañado de tortillas y salsa de chile ajo.",
               tags: ["Tiempo de espera", "Imperdible", "Mar y Tierra"],
-              waitTime: true
+              waitTime: true,
+              image: "/assets/images/material_pua/dish_12.jpg"
             },
             {
               id: "ent-7",
@@ -124,21 +137,24 @@ export const MENU_DATA = {
               price: 265,
               description: "Láminas de aguacate rellenas de refrescante encurtido tropical de salmón fresco acompañado de salsas frutales.",
               tags: ["Tiempo de espera", "Fresco"],
-              waitTime: true
+              waitTime: true,
+              image: "/assets/images/material_pua/dish_13.jpg"
             },
             {
               id: "ent-8",
               name: "Chicharrón de Pulpo",
               price: 350,
               description: "Crujiente pulpo frito al momento con un toque de alioli de habanero con guacamole.",
-              tags: ["Crujiente", "Mar"]
+              tags: ["Crujiente", "Mar"],
+              image: "/assets/images/pulpo_brasa.png"
             },
             {
               id: "ent-9",
               name: "Aguachile de Rib Eye",
               price: 295,
               description: "Rib eye sellado y bañado en salsas negras de la casa, arúgula, jalapeño, rábano sandía y cebolla encurtida.",
-              tags: ["Corte Sellado", "Salsas Negras"]
+              tags: ["Corte Sellado", "Salsas Negras"],
+              image: "/assets/images/material_pua/dish_14.jpg"
             }
           ]
         },
@@ -151,7 +167,8 @@ export const MENU_DATA = {
               id: "sop-1",
               name: "Crema de Espárragos",
               price: 180,
-              description: "Espárrago al dente preparado tradicionalmente con crema dulce y notas de almendra."
+              description: "Espárrago al dente preparado tradicionalmente con crema dulce y notas de almendra.",
+              image: "/assets/images/material_pua/dish_15.jpg"
             },
             {
               id: "sop-2",
@@ -165,7 +182,8 @@ export const MENU_DATA = {
               name: "Sinfonía de Cremas",
               price: 250,
               description: "Dúo de cremas de elote y chile poblano servida en pan de masa madre y un toque de parmesano.",
-              tags: ["En Masa Madre", "Especialidad"]
+              tags: ["En Masa Madre", "Especialidad"],
+              image: "/assets/images/material_pua/dish_16.jpg"
             },
             {
               id: "sop-4",
@@ -185,7 +203,8 @@ export const MENU_DATA = {
               name: "Jugo de Carne",
               price: 185,
               description: "Jugo de res acompañado de hortalizas del huerto y delicados trozos de picaña de primera calidad.",
-              tags: ["Picaña Prime"]
+              tags: ["Picaña Prime"],
+              image: "/assets/images/material_pua/dish_17.jpg"
             }
           ]
         },
@@ -198,13 +217,15 @@ export const MENU_DATA = {
               id: "ens-1",
               name: "Ensalada de Betabel con Manzana",
               price: 200,
-              description: "Acompañada de arúgula en vinagreta de naranja, aderezo de yogurth con eneldo y coronada con jamón serrano."
+              description: "Acompañada de arúgula en vinagreta de naranja, aderezo de yogurth con eneldo y coronada con jamón serrano.",
+              image: "/assets/images/material_pua/dish_18.jpg"
             },
             {
               id: "ens-2",
               name: "Ensalada de Frutos Rojos",
               price: 200,
-              description: "Selección de lechugas, aderezo miel mostaza, selección de frutos rojos, queso de cabra y frutos secos."
+              description: "Selección de lechugas, aderezo miel mostaza, selección de frutos rojos, queso de cabra y frutos secos.",
+              image: "/assets/images/material_pua/dish_19.jpg"
             },
             {
               id: "ens-3",
@@ -216,7 +237,8 @@ export const MENU_DATA = {
               id: "ens-4",
               name: "César con Pollo o Camarón",
               price: 290,
-              description: "Clásica ensalada césar acompañada de proteína a elegir: pollo a las brasas o camarón al grill."
+              description: "Clásica ensalada césar acompañada de proteína a elegir: pollo a las brasas o camarón al grill.",
+              image: "/assets/images/material_pua/dish_20.jpg"
             }
           ]
         },
@@ -240,7 +262,8 @@ export const MENU_DATA = {
               price: 2100,
               description: "Imponente corte que reúne New York y Tenderloin en un solo hueso en forma de T.",
               tags: ["Angus 1100g", "Tiempo de espera", "Guarnición Incluida"],
-              waitTime: true
+              waitTime: true,
+              image: "/assets/images/material_pua/dish_21.jpg"
             },
             {
               id: "cor-3",
@@ -256,14 +279,16 @@ export const MENU_DATA = {
               name: "Picaña (Calidad angus 400 grs.)",
               price: 550,
               description: "Jugosa picaña a la espada con capa de grasa crujiente y sellado perfecto.",
-              tags: ["Angus 400g", "Guarnición Incluida"]
+              tags: ["Angus 400g", "Guarnición Incluida"],
+              image: "/assets/images/material_pua/dish_22.jpg"
             },
             {
               id: "cor-5",
               name: "Arrachera (Calidad angus 400 grs.)",
               price: 450,
               description: "Suave arrachera marinada en hierbas y cítricos, suave y llena de jugo.",
-              tags: ["Angus 400g", "Guarnición Incluida"]
+              tags: ["Angus 400g", "Guarnición Incluida"],
+              image: "/assets/images/material_pua/dish_23.jpg"
             },
             {
               id: "cor-6",
@@ -291,13 +316,15 @@ export const MENU_DATA = {
               id: "pas-1",
               name: "Fettuccini a la Naranja",
               price: 350,
-              description: "En crema de naranja de la casa, atún sellado con costra de ajonjolí y espárragos."
+              description: "En crema de naranja de la casa, atún sellado con costra de ajonjolí y espárragos.",
+              image: "/assets/images/material_pua/dish_24.jpg"
             },
             {
               id: "pas-2",
               name: "Fettuccini al Pesto",
               price: 350,
-              description: "Con salmón horneado, pulpo y mix de nueces selectas."
+              description: "Con salmón horneado, pulpo y mix de nueces selectas.",
+              image: "/assets/images/material_pua/dish_25.jpg"
             },
             {
               id: "pas-3",
@@ -311,7 +338,8 @@ export const MENU_DATA = {
               id: "pas-4",
               name: "Fettuccini con Camarones",
               price: 290,
-              description: "Pasta fettuccini al dente, bañado en un cremoso bisque de camarón. Un clásico con sabor del mar."
+              description: "Pasta fettuccini al dente, bañado en un cremoso bisque de camarón. Un clásico con sabor del mar.",
+              image: "/assets/images/material_pua/dish_26.jpg"
             },
             {
               id: "pas-5",
@@ -337,7 +365,8 @@ export const MENU_DATA = {
               id: "mar-10",
               name: "Perla del Mar",
               price: 360,
-              description: "Combinación de mariscos, pulpo, camarón y robalo sobre cama de pepino fresco y salsa confitada de habanero con toques de chiles secos."
+              description: "Combinación de mariscos, pulpo, camarón y robalo sobre cama de pepino fresco y salsa confitada de habanero con toques de chiles secos.",
+              image: "/assets/images/material_pua/dish_27.jpg"
             },
             {
               id: "mar-11",
@@ -349,7 +378,8 @@ export const MENU_DATA = {
               id: "mar-12",
               name: "Aguachile Verde de Camarón",
               price: 295,
-              description: "Camarón encurtido en corte mariposa, cebolla morada, pepino, rábano sandía y salsa verde de aguachile."
+              description: "Camarón encurtido en corte mariposa, cebolla morada, pepino, rábano sandía y salsa verde de aguachile.",
+              image: "/assets/images/material_pua/dish_28.jpg"
             },
             {
               id: "mar-13",
@@ -387,9 +417,10 @@ export const MENU_DATA = {
               id: "mar-18",
               name: "Cola de Langosta (500 grs.)",
               price: 1550,
-              description: "Realzada con un delicado toque de vino blanco, mantequilla de finas hierbas y salsa de soya.",
+              description: "Realizada con un delicado toque de vino blanco, mantequilla de finas hierbas y salsa de soya.",
               tags: ["500 grs", "Tiempo de espera", "Premium"],
-              waitTime: true
+              waitTime: true,
+              image: "/assets/images/material_pua/dish_29.jpg"
             },
             {
               id: "mar-19",
@@ -409,7 +440,8 @@ export const MENU_DATA = {
               name: "Cordero",
               price: 620,
               description: "3 Formas de preparación: • Cocinado en salsa de vino tinto acompañado de espárragos y cremoso de papa. • Horneado a las finas hierbas servido en cama de ensalada de arúgula y espárragos, papas y cherrys confitados acompañado de gravy de vino blanco. • Sellado en mantequilla de finas hierbas, papas cambray y portobellos salteados con salsa de mostaza y naranja agridulce.",
-              tags: ["3 Preparaciones", "Gourmet"]
+              tags: ["3 Preparaciones", "Gourmet"],
+              image: "/assets/images/material_pua/dish_30.jpg"
             },
             {
               id: "esp-2",
@@ -430,7 +462,8 @@ export const MENU_DATA = {
               price: 590,
               description: "Exquisito filete mignon cocinado en mantequilla de ajo y romero, envuelto en masa hojaldre con una mezcla de semillas tostadas y suave puré de papa, finalizado con gravy de champiñones.",
               tags: ["Tiempo de espera", "Hojaldre"],
-              waitTime: true
+              waitTime: true,
+              image: "/assets/images/material_pua/dish_31.jpg"
             },
             {
               id: "esp-5",
@@ -474,7 +507,8 @@ export const MENU_DATA = {
               name: "Parrillada (Para 3 personas)",
               price: 1500,
               description: "Combinación de rib eye, arrachera y picaña, complementada con chiles toreados, queso fundido con chistorra, papas cambray y elote dorado.",
-              tags: ["Para 3 Personas", "Brasas"]
+              tags: ["Para 3 Personas", "Brasas"],
+              image: "/assets/images/material_pua/dish_32.jpg"
             },
             {
               id: "esp-11",
@@ -640,7 +674,7 @@ export const MENU_DATA = {
             { id: "mix-5", name: "Aperol Spritz", price: 195, description: "Excelente coctel para cualquier ocasión, aperol, agua mineral y vino espumoso." },
             { id: "mix-6", name: "Martini Tropical", price: 195, description: "Toque de curacao, ginebra cítrica, piña y amaretto." },
             { id: "mix-7", name: "Martini Caramelo", price: 195, description: "Cremoso martini a base de caramelo, vodka vermouth blanco y caramelo." },
-            { id: "mix-8", name: "Púa (Trago Insignia)", price: 195, description: "Elaborado en honor a nuestros más exigentes comensales; sabores enigmáticos y balance exquisito.", tags: ["Trago Insignia", "Casa"] },
+            { id: "mix-8", name: "Púa (Trago Insignia)", price: 195, description: "Elaborado en honor a nuestros más exigentes comensales; sabores enigmáticos y balance exquisito.", tags: ["Trago Insignia", "Casa"], image: "/assets/images/drinks_pua_hero.jpg" },
             { id: "mix-9", name: "Hani", price: 195, description: "Trago corto, semidulce, sabor a piña refrescante, tequila, limón y sal de jamaica." },
             { id: "mix-10", name: "Mezcal Reyes", price: 195, description: "Cítrico y picante, pepino macerado, sal de coco, mezcal ancho reyes y limón." },
             { id: "mix-11", name: "Mezcal Tiki", price: 195, description: "Sabor frutal con toque de avellana, mezcal de la casa, mango y piña." },

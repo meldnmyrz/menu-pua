@@ -1,15 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-deep-forest: #00473c;
+  --color-black-pitch: #050505;
+  --color-card-dark: #121214;
+  --color-card-surface: #18181b;
   --color-lime-glow: #e6ff55;
-  --color-sage-mist: #d8e5d6;
-  --color-warm-sand: #e8dcc6;
-  --color-cream-canvas: #f4f3e7;
-  --color-forest-shadow: #0e150e;
-  --color-pure-ink: #000000;
-  --color-warm-gray: #8c8c82;
-  --color-slate-gray: #555555;
+  --color-amber-ember: #f59e0b;
+  --color-border-dark: #27272a;
+  --color-text-primary: #f4f4f5;
+  --color-text-muted: #a1a1aa;
 
   --font-sweetsans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
   --font-grenette: 'Cormorant Garamond', Georgia, serif;
@@ -20,15 +19,13 @@
   --radius-images: 20px;
   --radius-inputs: 8px;
   --radius-buttons: 9999px;
-
-  --shadow-xl: rgba(14, 21, 14, 0.12) 3px 3px 32px -10px;
 }
 
 @layer base {
   body {
     font-family: var(--font-sweetsanstext);
-    background-color: #f4f3e7;
-    color: #0e150e;
+    background-color: #050505;
+    color: #f4f4f5;
   }
 
   .font-display {
@@ -52,56 +49,44 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f4f3e7;
+  background: #050505;
 }
 ::-webkit-scrollbar-thumb {
-  background: #00473c;
+  background: #27272a;
   border-radius: 9999px;
 }
+::-webkit-scrollbar-thumb:hover {
+  background: #e6ff55;
+}
 
-/* Sweetgreen Navigation Glass & Surface Styles */
-.sweet-nav {
-  background-color: rgba(244, 243, 231, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(0, 71, 60, 0.12);
+/* Glassmorphism Navigation */
+.sweet-nav-dark {
+  background-color: rgba(9, 9, 11, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .pill-btn-lime {
   background-color: #e6ff55;
-  color: #0e150e;
+  color: #000000;
   font-family: var(--font-sweetsanstext);
-  font-weight: 700;
+  font-weight: 800;
   border-radius: 9999px;
   padding: 14px 24px;
-  letter-spacing: 0.017em;
+  letter-spacing: 0.02em;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 .pill-btn-lime:hover {
   background-color: #d8f533;
   transform: translateY(-1px);
-  box-shadow: 0 10px 25px -5px rgba(0, 71, 60, 0.2);
+  box-shadow: 0 10px 25px -5px rgba(230, 255, 85, 0.3);
 }
 
-.pill-btn-forest {
-  background-color: #00473c;
-  color: #f4f3e7;
-  font-family: var(--font-sweetsanstext);
-  font-weight: 700;
-  border-radius: 9999px;
-  padding: 14px 24px;
-  letter-spacing: 0.017em;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
-.pill-btn-forest:hover {
-  background-color: #00362e;
-  transform: translateY(-1px);
-}
-
-.pill-btn-outline {
+.pill-btn-outline-white {
   background-color: transparent;
-  color: #00473c;
-  border: 2px solid #00473c;
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
   font-family: var(--font-sweetsanstext);
   font-weight: 700;
   border-radius: 9999px;
@@ -109,30 +94,30 @@
   letter-spacing: 0.05em;
   transition: all 0.2s ease;
 }
-.pill-btn-outline:hover {
-  background-color: #00473c;
+.pill-btn-outline-white:hover {
+  border-color: #e6ff55;
   color: #e6ff55;
+  background-color: rgba(230, 255, 85, 0.05);
 }
 
-.ghost-text-link {
-  color: #0e150e;
+.ghost-text-link-white {
+  color: #f4f4f5;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 14px;
   display: inline-flex;
   items-center: center;
   gap: 4px;
   transition: opacity 0.2s ease;
 }
-.ghost-text-link:hover {
-  text-decoration: underline;
-  color: #00473c;
+.ghost-text-link-white:hover {
+  color: #e6ff55;
 }
 
-/* Badge styling */
+/* Badges */
 .badge-lime {
   background-color: #e6ff55;
-  color: #0e150e;
-  font-weight: 700;
+  color: #000000;
+  font-weight: 800;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -140,15 +125,16 @@
   border-radius: 20px;
 }
 
-.badge-forest {
-  background-color: #00473c;
-  color: #f4f3e7;
+.badge-dark {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #f4f4f5;
   font-weight: 700;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 4px 12px;
   border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .no-scrollbar::-webkit-scrollbar {
