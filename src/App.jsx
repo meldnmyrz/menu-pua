@@ -7,7 +7,7 @@ import DestiladosTable from './components/DestiladosTable';
 import ItemModal from './components/ItemModal';
 import OrderDrawer from './components/OrderDrawer';
 import Footer from './components/Footer';
-import { Flame, Wine, Sparkles, Filter, ChevronRight } from 'lucide-react';
+import { Flame, Wine, Sparkles } from 'lucide-react';
 
 export default function App() {
   const [activeSectionId, setActiveSectionId] = useState("platillos");
@@ -22,12 +22,11 @@ export default function App() {
     return MENU_DATA.sections.find((s) => s.id === activeSectionId) || MENU_DATA.sections[0];
   }, [activeSectionId]);
 
-  // Filtered categories and items based on search query & active category
+  // Filtered categories and items based on search query
   const filteredCategories = useMemo(() => {
     const query = searchQuery.toLowerCase().trim();
 
     return currentSection.categories.map((cat) => {
-      // Table layout categories (Destilados)
       if (cat.isTableLayout) {
         if (!query) return cat;
         const matchingGroups = cat.groups.map((g) => ({
@@ -41,7 +40,6 @@ export default function App() {
         return { ...cat, groups: matchingGroups };
       }
 
-      // Standard item list categories
       const filteredItems = (cat.items || []).filter((item) => {
         if (!query) return true;
         const nameMatch = item.name?.toLowerCase().includes(query);
@@ -60,7 +58,6 @@ export default function App() {
     });
   }, [currentSection, searchQuery]);
 
-  // Total matching count for search indicator
   const totalFilteredCount = useMemo(() => {
     return filteredCategories.reduce((acc, cat) => {
       if (cat.isTableLayout) {
@@ -70,7 +67,6 @@ export default function App() {
     }, 0);
   }, [filteredCategories]);
 
-  // Handle adding an item to the order drawer
   const handleAddToOrder = (itemToAdd) => {
     setOrderItems((prev) => {
       const existingIndex = prev.findIndex((i) => i.id === itemToAdd.id);
@@ -91,7 +87,8 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0b0908] text-stone-100 font-sans selection:bg-amber-600 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#f4f3e7] text-[#0e150e] font-sans selection:bg-[#e6ff55] selection:text-[#00473c]">
+      
       {/* Header Bar */}
       <Header
         restaurant={MENU_DATA.restaurant}
@@ -107,7 +104,7 @@ export default function App() {
         filteredCount={totalFilteredCount}
       />
 
-      {/* Sticky Category Tabs Bar */}
+      {/* Sweetgreen-style Category Nav Tabs */}
       <CategoryNav
         categories={currentSection.categories}
         activeCategoryId={activeCategoryId}
@@ -116,70 +113,63 @@ export default function App() {
       />
 
       {/* Main Section Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
-        {/* Section Header Banner */}
-        <div className="relative rounded-3xl p-6 sm:p-10 overflow-hidden bg-gradient-to-r from-stone-900 via-[#181310] to-stone-900 border border-stone-800 shadow-2xl">
-          <div className="relative z-10 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-950/80 border border-amber-600/30 text-amber-400 text-xs font-semibold uppercase tracking-widest mb-3">
-              {activeSectionId === "platillos" ? <Flame className="w-3.5 h-3.5" /> : <Wine className="w-3.5 h-3.5" />}
+      <main className="flex-1 max-w-[1200px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+        
+        {/* Sweetgreen Hero / Band Banner */}
+        <div className="relative rounded-[24px] p-8 sm:p-12 overflow-hidden bg-[#d8e5d6] border border-[#00473c]/15 shadow-xs">
+          <div className="max-w-2xl relative z-10">
+            <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.05em] text-[#00473c] mb-3">
+              {activeSectionId === "platillos" ? <Flame className="w-4 h-4" /> : <Wine className="w-4 h-4" />}
               {currentSection.name}
             </div>
-            <h2 className="text-3xl sm:text-5xl font-bold font-serif-pua text-stone-100 tracking-tight">
-              {currentSection.shortName === "Platillos" ? "Nuestra Cocina a la Brasa" : "Cava & Mixología Contemporánea"}
+            <h2 className="text-4xl sm:text-6xl font-display font-normal text-[#00473c] leading-[0.85] tracking-tight">
+              {currentSection.shortName === "Platillos" ? "GASTRONOMÍA A LAS BRASAS" : "MIXOLOGÍA & CAVA DE VINOS"}
             </h2>
-            <p className="text-sm sm:text-base text-stone-400 font-light mt-2">
+            <p className="text-sm sm:text-base text-[#0e150e]/80 font-normal mt-4 leading-relaxed">
               {currentSection.description}
             </p>
           </div>
-
-          {/* Optional Banner Image Backdrop */}
-          {currentSection.heroBanner && (
-            <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden md:block opacity-30 pointer-events-none">
-              <img src={currentSection.heroBanner} alt="Drinks" className="w-full h-full object-cover filter blur-xs" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#181310] via-[#181310]/80 to-transparent" />
-            </div>
-          )}
         </div>
 
-        {/* Section Content: Loop through categories */}
+        {/* Section Content: Categories */}
         {filteredCategories.length === 0 ? (
-          <div className="text-center py-16 bg-stone-900/40 rounded-3xl border border-stone-800">
-            <Sparkles className="w-10 h-10 text-amber-500 mx-auto mb-3 opacity-60" />
-            <h3 className="text-xl font-bold text-stone-200 font-serif-pua">
-              No se encontraron platillos o bebidas
+          <div className="text-center py-16 bg-[#d8e5d6]/50 rounded-[24px] border border-[#00473c]/15">
+            <Sparkles className="w-10 h-10 text-[#00473c] mx-auto mb-3 opacity-60" />
+            <h3 className="text-2xl font-display text-[#00473c]">
+              No se encontraron opciones
             </h3>
-            <p className="text-xs text-stone-500 mt-1 max-w-sm mx-auto">
+            <p className="text-xs text-[#0e150e]/70 mt-1 max-w-sm mx-auto">
               Intenta buscar con otra palabra clave como "Rib Eye", "Martini", "Salmón" o "Pasta".
             </p>
             <button
               onClick={() => setSearchQuery("")}
-              className="mt-4 px-4 py-2 bg-amber-600 text-stone-950 text-xs font-bold rounded-xl hover:bg-amber-500 transition-colors"
+              className="mt-4 pill-btn-lime text-xs uppercase"
             >
-              Limpiar búsqueda
+              LIMPIAR BÚSQUEDA
             </button>
           </div>
         ) : (
           filteredCategories
             .filter((cat) => activeCategoryId === "all" || activeCategoryId === cat.id)
             .map((category) => (
-              <section key={category.id} id={`category-${category.id}`} className="space-y-6 scroll-mt-36">
-                {/* Category Header */}
-                <div className="flex items-center justify-between border-b border-stone-800 pb-4">
+              <section key={category.id} id={`category-${category.id}`} className="space-y-6 scroll-mt-32">
+                
+                {/* Category Section Header */}
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between border-b border-[#00473c]/20 pb-4 gap-2">
                   <div>
-                    <h3 className="text-2xl sm:text-3xl font-bold font-serif-pua text-stone-100 flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-amber-500" />
+                    <h3 className="text-3xl sm:text-5xl font-display font-normal text-[#0e150e]">
                       {category.name}
                     </h3>
                     {category.subtitle && (
-                      <p className="text-xs text-amber-400/80 font-light mt-1">
+                      <p className="text-xs text-[#00473c] font-bold uppercase tracking-[0.05em] mt-1">
                         {category.subtitle}
                       </p>
                     )}
                   </div>
-                  <span className="text-xs text-stone-500 font-mono">
+                  <span className="text-xs text-[#00473c] font-bold uppercase tracking-[0.05em]">
                     {category.isTableLayout
                       ? `${category.groups?.length || 0} Familias`
-                      : `${category.items?.length || 0} opciones`}
+                      : `${category.items?.length || 0} Opciones`}
                   </span>
                 </div>
 
@@ -191,8 +181,8 @@ export default function App() {
                     orderItems={orderItems}
                   />
                 ) : (
-                  /* Grid Layout for standard items */
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  /* 3-Column Sweetgreen Product Card Grid */
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {category.items.map((item) => (
                       <MenuItemCard
                         key={item.id}
