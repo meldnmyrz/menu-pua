@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, ShoppingBag, Flame, Wine, X, Sparkles } from 'lucide-react';
+import { Search, ShoppingBag, Flame, Wine, X, Sparkles, Command } from 'lucide-react';
 
 export default function Header({
   restaurant,
@@ -9,7 +9,8 @@ export default function Header({
   setIsOrderOpen,
   activeSectionId,
   setActiveSectionId,
-  filteredCount
+  filteredCount,
+  setIsCommandMenuOpen
 }) {
   return (
     <header className="relative w-full bg-[#050505] border-b border-[#27272a] pt-8 pb-6">
@@ -54,12 +55,25 @@ export default function Header({
 
           {/* Action CTAs */}
           <div className="flex items-center gap-3">
+            {/* Command Menu 6 Trigger Button */}
+            <button
+              onClick={() => setIsCommandMenuOpen(true)}
+              className="pill-btn-outline-white flex items-center gap-2 text-xs font-extrabold shadow-sm hover:border-[#e6ff55]"
+              title="Abrir Command Menu (Ctrl+K)"
+            >
+              <Command className="w-3.5 h-3.5 text-[#e6ff55]" />
+              <span className="hidden sm:inline">Navegador</span>
+              <kbd className="px-1.5 py-0.5 text-[10px] bg-[#18181b] text-[#e6ff55] rounded border border-[#27272a]">
+                ⌘K
+              </kbd>
+            </button>
+
             <button
               onClick={() => setIsOrderOpen(true)}
               className="pill-btn-lime flex items-center gap-2.5 text-sm shadow-xl"
             >
               <ShoppingBag className="w-4 h-4 text-black" />
-              <span>MI MESA / SELECCIÓN</span>
+              <span>MI MESA</span>
               {orderCount > 0 && (
                 <span className="ml-1 px-2 py-0.5 text-xs bg-black text-[#e6ff55] rounded-full font-extrabold">
                   {orderCount}

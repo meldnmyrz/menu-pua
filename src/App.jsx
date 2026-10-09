@@ -6,6 +6,7 @@ import MenuItemCard from './components/MenuItemCard';
 import DestiladosTable from './components/DestiladosTable';
 import ItemModal from './components/ItemModal';
 import OrderDrawer from './components/OrderDrawer';
+import CommandMenu from './components/CommandMenu';
 import Footer from './components/Footer';
 import { Flame, Wine, Sparkles } from 'lucide-react';
 
@@ -16,6 +17,7 @@ export default function App() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [orderItems, setOrderItems] = useState([]);
   const [isOrderOpen, setIsOrderOpen] = useState(false);
+  const [isCommandMenuOpen, setIsCommandMenuOpen] = useState(false);
 
   // Active section data
   const currentSection = useMemo(() => {
@@ -102,9 +104,10 @@ export default function App() {
           setActiveCategoryId("all");
         }}
         filteredCount={totalFilteredCount}
+        setIsCommandMenuOpen={setIsCommandMenuOpen}
       />
 
-      {/* Sweetgreen-style Dark Category Nav Tabs */}
+      {/* Category Nav Tabs */}
       <CategoryNav
         categories={currentSection.categories}
         activeCategoryId={activeCategoryId}
@@ -113,9 +116,9 @@ export default function App() {
       />
 
       {/* Main Section Content Area */}
-      <main className="flex-1 max-w-[1200px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+      <main className="flex-1 max-w-[1200px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-20">
         
-        {/* Black Theme Hero / Band Banner */}
+        {/* Section Header Banner */}
         <div className="relative rounded-[24px] p-8 sm:p-12 overflow-hidden bg-[#121214] border border-[#27272a] shadow-2xl">
           <div className="max-w-2xl relative z-10">
             <div className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.05em] text-[#e6ff55] mb-3">
@@ -138,7 +141,7 @@ export default function App() {
           )}
         </div>
 
-        {/* Section Content: Categories */}
+        {/* Section Content: Independent Category Sections */}
         {filteredCategories.length === 0 ? (
           <div className="text-center py-16 bg-[#121214] rounded-[24px] border border-[#27272a]">
             <Sparkles className="w-10 h-10 text-[#e6ff55] mx-auto mb-3 opacity-80" />
@@ -146,7 +149,7 @@ export default function App() {
               No se encontraron opciones
             </h3>
             <p className="text-xs text-[#a1a1aa] mt-1 max-w-sm mx-auto">
-              Intenta buscar con otra palabra clave como "Rib Eye", "Martini", "Salmón" o "Pasta".
+              Intenta buscar con otra palabra clave o utiliza el navegador ⌘K arriba.
             </p>
             <button
               onClick={() => setSearchQuery("")}
@@ -159,11 +162,21 @@ export default function App() {
           filteredCategories
             .filter((cat) => activeCategoryId === "all" || activeCategoryId === cat.id)
             .map((category) => (
-              <section key={category.id} id={`category-${category.id}`} className="space-y-6 scroll-mt-32">
+              <section 
+                key={category.id} 
+                id={`category-${category.id}`} 
+                className="space-y-6 scroll-mt-32 p-6 sm:p-8 bg-[#0c0c0e] rounded-[24px] border border-[#27272a]/60 shadow-xl"
+              >
                 
-                {/* Category Section Header */}
+                {/* Independent Category Section Header */}
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between border-b border-[#27272a] pb-4 gap-2">
                   <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#e6ff55]" />
+                      <span className="text-[11px] font-extrabold uppercase tracking-[0.1em] text-[#e6ff55]">
+                        Clasificación Independiente
+                      </span>
+                    </div>
                     <h3 className="text-3xl sm:text-5xl font-display font-normal text-white">
                       {category.name}
                     </h3>
@@ -173,10 +186,10 @@ export default function App() {
                       </p>
                     )}
                   </div>
-                  <span className="text-xs text-[#e6ff55] font-bold uppercase tracking-[0.05em]">
+                  <span className="text-xs text-[#a1a1aa] font-bold uppercase tracking-[0.05em]">
                     {category.isTableLayout
                       ? `${category.groups?.length || 0} Familias`
-                      : `${category.items?.length || 0} Opciones`}
+                      : `${category.items?.length || 0} Opciones disponibles`}
                   </span>
                 </div>
 
@@ -188,7 +201,7 @@ export default function App() {
                     orderItems={orderItems}
                   />
                 ) : (
-                  /* 3-Column Product Card Grid */
+                  /* 3-Column Product Card Grid for Each Classification */
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {category.items.map((item) => (
                       <MenuItemCard
@@ -205,6 +218,18 @@ export default function App() {
             ))
         )}
       </main>
+
+      {/* React Bits Pro Command Menu 6 Popover */}
+      <CommandMenu
+        isOpen={isCommandMenuOpen}
+        setIsOpen={setIsCommandMenuOpen}
+        sections={MENU_DATA.sections}
+        activeSectionId={activeSectionId}
+        setActiveSectionId={setActiveSectionId}
+        setActiveCategoryId={setActiveCategoryId}
+        onSelectItem={setSelectedItem}
+        setIsOrderOpen={setIsOrderOpen}
+      />
 
       {/* Item Detail Modal */}
       <ItemModal
