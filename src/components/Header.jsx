@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, ShoppingBag, ChevronDown } from 'lucide-react';
+import { Search, ChevronDown } from 'lucide-react';
 
 export default function Header({
   restaurant,
@@ -180,37 +180,12 @@ export default function Header({
             {/* Search Launcher / Command Menu Trigger ⌘K */}
             <button
               onClick={() => setIsCommandMenuOpen(true)}
-              className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#121214] border border-[#27272a] text-[#a1a1aa] hover:text-white hover:border-[#cbd5e1] transition-all text-xs"
+              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#121214] border border-[#27272a] text-[#a1a1aa] hover:text-white hover:border-[#cbd5e1] transition-all text-xs cursor-pointer"
               title="Buscar en el menú (⌘K)"
             >
               <Search className="w-3.5 h-3.5 text-[#cbd5e1]" />
-              <span className="font-medium">Buscar...</span>
-              <kbd className="px-1.5 py-0.5 text-[10px] bg-[#18181b] text-[#cbd5e1] rounded border border-[#27272a] font-mono">⌘K</kbd>
-            </button>
-
-            {/* Mobile Search Icon Button */}
-            <button
-              onClick={() => setIsCommandMenuOpen(true)}
-              className="sm:hidden p-2 rounded-full text-[#a1a1aa] hover:text-[#cbd5e1] hover:bg-[#18181b] transition-colors"
-              title="Buscar en el menú"
-            >
-              <Search className="w-4 h-4 text-[#cbd5e1]" />
-            </button>
-
-            {/* Lime Glow "MI MESA" Pill Button */}
-            <button
-              onClick={() => setIsOrderOpen(true)}
-              className={`rounded-full bg-[#e6ff55] text-black font-extrabold text-xs uppercase tracking-wider flex items-center gap-2 shadow-[0_0_20px_rgba(230,255,85,0.4)] hover:shadow-[0_0_30px_rgba(230,255,85,0.6)] hover:bg-[#d8f533] transition-all transform active:scale-95 ${
-                isScrolled ? "px-4 py-1.5" : "px-5 py-2"
-              }`}
-            >
-              <ShoppingBag className="w-4 h-4 text-black" />
-              <span>MI MESA</span>
-              {orderCount > 0 && (
-                <span className="px-1.5 py-0.2 text-[10px] bg-black text-[#e6ff55] rounded-full font-bold">
-                  {orderCount}
-                </span>
-              )}
+              <span className="font-medium hidden sm:inline">Buscar...</span>
+              <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] bg-[#18181b] text-[#cbd5e1] rounded border border-[#27272a] font-mono">⌘K</kbd>
             </button>
           </div>
         </div>
