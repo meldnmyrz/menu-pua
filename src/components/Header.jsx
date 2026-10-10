@@ -105,39 +105,66 @@ export default function Header({
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isDropdownOpen ? "rotate-180 text-[#c89f53]" : "text-[#a1a1aa]"}`} />
               </button>
 
-              {/* Glassmorphism Dropdown Menu */}
+              {/* Command Menu 6 Compact Popover Dropdown */}
               {isDropdownOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-[#0b0e14]/95 backdrop-blur-2xl border border-[#232730] rounded-[20px] p-4 shadow-[0_20px_50px_rgba(0,0,0,0.95)] z-50 animate-fade-in">
-                  {sections.map((sec) => (
-                    <div key={sec.id} className="mb-3 last:mb-0">
-                      <div className="text-[10px] font-extrabold uppercase tracking-widest text-[#c89f53] px-3 py-1 border-b border-[#232730] mb-1">
-                        {sec.title}
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2.5 w-80 bg-[#0b0e14]/98 backdrop-blur-2xl border border-[#232730] rounded-[22px] p-3.5 shadow-[0_25px_60px_rgba(0,0,0,0.98)] z-50 animate-fade-in text-[#f5f7f5]">
+                  
+                  {/* Command Popover Header */}
+                  <div className="flex items-center justify-between px-2.5 pb-2.5 mb-2 border-b border-[#232730] text-[10px] font-extrabold uppercase tracking-widest text-[#c89f53]">
+                    <span>Clasificaciones del Menú</span>
+                    <button
+                      onClick={() => {
+                        setIsDropdownOpen(false);
+                        setIsCommandMenuOpen(true);
+                      }}
+                      className="px-2 py-0.5 rounded bg-[#12141a] border border-[#232730] text-[#d4d3c9] hover:text-white transition-colors font-mono cursor-pointer flex items-center gap-1"
+                    >
+                      <span>Buscar ⌘K</span>
+                    </button>
+                  </div>
+
+                  {/* Section Groups */}
+                  <div className="max-h-[380px] overflow-y-auto space-y-3 no-scrollbar pr-1">
+                    {sections.map((sec) => (
+                      <div key={sec.id} className="space-y-1">
+                        <div className="text-[10px] font-bold uppercase tracking-wider text-[#9e9d93] px-2.5">
+                          {sec.title}
+                        </div>
+                        <div className="space-y-0.5">
+                          {sec.categories.map((cat) => (
+                            <button
+                              key={cat.id}
+                              onClick={() => {
+                                onNavigateCategory(cat.id, sec.id);
+                                setIsDropdownOpen(false);
+                              }}
+                              className={`w-full text-left px-3 py-2 rounded-[12px] text-xs font-semibold flex items-center justify-between transition-all cursor-pointer ${
+                                activeCategoryId === cat.id
+                                  ? "bg-[#987232] text-white font-extrabold shadow-md"
+                                  : "text-[#d4d3c9] hover:text-white hover:bg-[#12141a]"
+                              }`}
+                            >
+                              <span className="truncate">{cat.name}</span>
+                              {cat.items?.length > 0 && (
+                                <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full ${
+                                  activeCategoryId === cat.id ? "bg-black text-[#c89f53]" : "bg-[#12141a] text-[#c89f53] border border-[#232730]"
+                                }`}>
+                                  {cat.items.length}
+                                </span>
+                              )}
+                            </button>
+                          ))}
+                        </div>
                       </div>
-                      <div className="space-y-0.5">
-                        {sec.categories.map((cat) => (
-                          <button
-                            key={cat.id}
-                            onClick={() => {
-                              onNavigateCategory(cat.id, sec.id);
-                              setIsDropdownOpen(false);
-                            }}
-                            className={`w-full text-left px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between transition-colors ${
-                              activeCategoryId === cat.id
-                                ? "bg-[#987232] text-white font-extrabold"
-                                : "text-[#d4d3c9] hover:text-white hover:bg-[#191c2b]"
-                            }`}
-                          >
-                            <span>{cat.name}</span>
-                            {cat.items?.length > 0 && (
-                              <span className={`text-[10px] font-mono ${activeCategoryId === cat.id ? "text-white" : "text-[#c89f53]"}`}>
-                                {cat.items.length}
-                              </span>
-                            )}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+
+                  {/* Command Popover Footer */}
+                  <div className="mt-2.5 pt-2 border-t border-[#232730] flex items-center justify-between text-[10px] text-[#9e9d93] px-2.5">
+                    <span>React Bits Pro Block</span>
+                    <span className="text-[#c89f53] font-extrabold">Command Menu 6</span>
+                  </div>
+
                 </div>
               )}
             </div>
