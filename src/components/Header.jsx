@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, ShoppingBag, Flame, Wine, Bell, User, ChevronDown, Command } from 'lucide-react';
+import { Search, ShoppingBag, ChevronDown } from 'lucide-react';
 
 export default function Header({
   restaurant,
@@ -136,16 +136,27 @@ export default function Header({
               <span className={lang === "EN" ? "text-white font-bold" : ""}>EN</span>
             </button>
 
-            {/* Bell Notification / Command Menu Launcher ⌘K */}
+            {/* Search Launcher / Command Menu Trigger ⌘K */}
             <button
               onClick={() => setIsCommandMenuOpen(true)}
-              className="p-2 rounded-full text-[#a1a1aa] hover:text-[#cbd5e1] hover:bg-[#18181b] transition-colors"
-              title="Buscar / Command Menu (⌘K)"
+              className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#121214] border border-[#27272a] text-[#a1a1aa] hover:text-white hover:border-[#cbd5e1] transition-all text-xs"
+              title="Buscar en el menú (⌘K)"
             >
-              <Bell className="w-4 h-4" />
+              <Search className="w-3.5 h-3.5 text-[#cbd5e1]" />
+              <span className="font-medium">Buscar...</span>
+              <kbd className="px-1.5 py-0.5 text-[10px] bg-[#18181b] text-[#cbd5e1] rounded border border-[#27272a] font-mono">⌘K</kbd>
             </button>
 
-            {/* Lime / Silver Glow "MI MESA" Pill Button */}
+            {/* Mobile Search Icon Button */}
+            <button
+              onClick={() => setIsCommandMenuOpen(true)}
+              className="sm:hidden p-2 rounded-full text-[#a1a1aa] hover:text-[#cbd5e1] hover:bg-[#18181b] transition-colors"
+              title="Buscar en el menú"
+            >
+              <Search className="w-4 h-4 text-[#cbd5e1]" />
+            </button>
+
+            {/* Lime Glow "MI MESA" Pill Button */}
             <button
               onClick={() => setIsOrderOpen(true)}
               className={`rounded-full bg-[#e6ff55] text-black font-extrabold text-xs uppercase tracking-wider flex items-center gap-2 shadow-[0_0_20px_rgba(230,255,85,0.4)] hover:shadow-[0_0_30px_rgba(230,255,85,0.6)] hover:bg-[#d8f533] transition-all transform active:scale-95 ${
@@ -164,64 +175,9 @@ export default function Header({
         </div>
       </div>
 
-      {/* Sub-Header Control Bar */}
-      {!isScrolled && (
-        <div className="pointer-events-auto bg-[#09090b] border-t border-[#18181b] py-2 px-4 sm:px-6 transition-all duration-300">
-          <div className="max-w-[1280px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-            
-            {/* Section Toggle Pill */}
-            <div className="flex items-center bg-[#121214] p-1 rounded-full border border-[#27272a] w-full sm:w-auto">
-              <button
-                onClick={() => {
-                  setActiveSectionId("platillos");
-                  onNavigateCategory("cortes", "platillos");
-                }}
-                className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-1.5 rounded-full font-extrabold text-xs uppercase tracking-wider transition-all ${
-                  activeSectionId === "platillos"
-                    ? "bg-[#e6ff55] text-black shadow-md"
-                    : "text-[#a1a1aa] hover:text-white"
-                }`}
-              >
-                <Flame className="w-3.5 h-3.5" />
-                <span>PLATILLOS</span>
-              </button>
-
-              <button
-                onClick={() => {
-                  setActiveSectionId("bebidas");
-                  onNavigateCategory("mixologia", "bebidas");
-                }}
-                className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-1.5 rounded-full font-extrabold text-xs uppercase tracking-wider transition-all ${
-                  activeSectionId === "bebidas"
-                    ? "bg-[#e6ff55] text-black shadow-md"
-                    : "text-[#a1a1aa] hover:text-white"
-                }`}
-              >
-                <Wine className="w-3.5 h-3.5" />
-                <span>BEBIDAS & CAVA</span>
-              </button>
-            </div>
-
-            {/* Quick Search Input */}
-            <div className="relative w-full sm:w-72">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#a1a1aa]">
-                <Search className="w-3.5 h-3.5" />
-              </div>
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Buscar en el menú..."
-                className="w-full pl-9 pr-8 py-1.5 rounded-full bg-[#121214] border border-[#27272a] text-white text-xs placeholder-[#71717a] focus:outline-none focus:border-[#cbd5e1] transition-all"
-              />
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Ambient Silver Glow Line Divider */}
       {!isScrolled && (
-        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#cbd5e1]/60 to-transparent shadow-[0_2px_15px_rgba(203,213,225,0.4)]" />
+        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#cbd5e1]/40 to-transparent" />
       )}
     </header>
   );
