@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
-  Search, Command, Flame, Wine, Soup, Salad, Beef, CookingPot, 
+  Search, Flame, Wine, Soup, Salad, Beef, CookingPot, 
   Fish, Sparkles, UtensilsCrossed, Cake, Smile, GlassWater, Beer, 
-  Coffee, ShoppingBag, ArrowRight, CornerDownLeft, X, Clock 
+  Coffee, ShoppingBag, ArrowRight, CornerDownLeft, X 
 } from 'lucide-react';
 
 const ICON_MAP = {
@@ -98,7 +98,6 @@ export default function CommandMenu({
   const combinedResults = [
     ...filteredCategories,
     ...filteredItems,
-    { id: "action-order", name: "Abrir Mi Mesa / Ver Selección", type: "action", icon: "ShoppingBag" },
     { id: "action-platillos", name: "Ver Menú de Platillos a la Brasa", type: "action", sectionId: "platillos" },
     { id: "action-bebidas", name: "Ver Cava de Vinos & Mixología", type: "action", sectionId: "bebidas" }
   ];
@@ -128,9 +127,7 @@ export default function CommandMenu({
       }, 100);
     } else if (cmd.type === "action") {
       setIsOpen(false);
-      if (cmd.id === "action-order") {
-        setIsOrderOpen(true);
-      } else if (cmd.sectionId) {
+      if (cmd.sectionId) {
         setActiveSectionId(cmd.sectionId);
         setActiveCategoryId("all");
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -158,11 +155,11 @@ export default function CommandMenu({
       <div className="absolute inset-0" onClick={() => setIsOpen(false)} />
 
       {/* Command Menu Popover Box */}
-      <div className="relative w-full max-w-xl bg-[#09090b] rounded-[24px] border border-[#27272a] shadow-2xl overflow-hidden text-white flex flex-col z-10">
+      <div className="relative w-full max-w-xl bg-[#0b0e14] rounded-[24px] border border-[#232730] shadow-2xl overflow-hidden text-[#f5f7f5] flex flex-col z-10">
         
         {/* Search Input Bar */}
-        <div className="flex items-center px-4 py-3.5 border-b border-[#27272a] bg-[#121214]">
-          <Search className="w-5 h-5 text-[#e6ff55] mr-3 flex-shrink-0" />
+        <div className="flex items-center px-4 py-3.5 border-b border-[#232730] bg-[#12141a]">
+          <Search className="w-5 h-5 text-[#c89f53] mr-3 flex-shrink-0" />
           <input
             ref={inputRef}
             type="text"
@@ -173,15 +170,15 @@ export default function CommandMenu({
             }}
             onKeyDown={handleKeyDownList}
             placeholder="Ir a clasificación o platillo... (ej. Cortes, Mixología, Pasta)"
-            className="w-full bg-transparent text-white text-base placeholder-[#71717a] focus:outline-none"
+            className="w-full bg-transparent text-[#f5f7f5] text-base placeholder-[#9e9d93] focus:outline-none"
           />
           <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 text-[10px] font-extrabold uppercase bg-black text-[#a1a1aa] rounded-md border border-[#27272a]">
+            <span className="px-2 py-0.5 text-[10px] font-extrabold uppercase bg-black text-[#d4d3c9] rounded-md border border-[#232730]">
               ESC
             </span>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-1 text-[#71717a] hover:text-white"
+              className="p-1 text-[#9e9d93] hover:text-white"
             >
               <X className="w-4 h-4" />
             </button>
@@ -194,9 +191,9 @@ export default function CommandMenu({
           {/* Classification Categories */}
           {filteredCategories.length > 0 && (
             <div>
-              <div className="px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.1em] text-[#e6ff55] flex items-center justify-between">
+              <div className="px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.1em] text-[#c89f53] flex items-center justify-between">
                 <span>Clasificaciones del Menú ({filteredCategories.length})</span>
-                <span className="text-[10px] text-[#71717a]">Sección Independiente</span>
+                <span className="text-[10px] text-[#9e9d93]">Sección Independiente</span>
               </div>
               <div className="space-y-1 mt-1">
                 {filteredCategories.map((cat, idx) => {
@@ -210,23 +207,23 @@ export default function CommandMenu({
                       onMouseEnter={() => setSelectedIndex(combinedResults.indexOf(cat))}
                       className={`flex items-center justify-between px-3.5 py-2.5 rounded-[14px] cursor-pointer transition-all ${
                         isSelected
-                          ? "bg-[#e6ff55] text-black font-bold shadow-md"
-                          : "text-[#f4f4f5] hover:bg-[#18181b]"
+                          ? "bg-[#987232] text-white font-bold shadow-md"
+                          : "text-[#f5f7f5] hover:bg-[#12141a]"
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <div className={`p-1.5 rounded-lg ${isSelected ? "bg-black text-[#e6ff55]" : "bg-[#18181b] text-[#e6ff55]"}`}>
+                        <div className={`p-1.5 rounded-lg ${isSelected ? "bg-black text-[#c89f53]" : "bg-[#12141a] text-[#c89f53]"}`}>
                           <IconComp className="w-4 h-4" />
                         </div>
                         <span className="text-sm font-semibold">{cat.name}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         {cat.count && (
-                          <span className={`text-xs px-2 py-0.5 rounded-full ${isSelected ? "bg-black text-[#e6ff55]" : "bg-[#18181b] text-[#a1a1aa]"}`}>
+                          <span className={`text-xs px-2 py-0.5 rounded-full ${isSelected ? "bg-black text-white" : "bg-[#12141a] text-[#d4d3c9]"}`}>
                             {cat.count} opciones
                           </span>
                         )}
-                        <ArrowRight className={`w-4 h-4 ${isSelected ? "text-black" : "text-[#71717a]"}`} />
+                        <ArrowRight className={`w-4 h-4 ${isSelected ? "text-white" : "text-[#9e9d93]"}`} />
                       </div>
                     </div>
                   );
@@ -238,7 +235,7 @@ export default function CommandMenu({
           {/* Popular Dishes */}
           {filteredItems.length > 0 && (
             <div>
-              <div className="px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.1em] text-[#a1a1aa]">
+              <div className="px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.1em] text-[#d4d3c9]">
                 Platillos & Cócteles Destacados
               </div>
               <div className="space-y-1 mt-1">
@@ -252,15 +249,15 @@ export default function CommandMenu({
                       onMouseEnter={() => setSelectedIndex(combinedResults.indexOf(item))}
                       className={`flex items-center justify-between px-3.5 py-2.5 rounded-[14px] cursor-pointer transition-all ${
                         isSelected
-                          ? "bg-[#e6ff55] text-black font-bold shadow-md"
-                          : "text-[#f4f4f5] hover:bg-[#18181b]"
+                          ? "bg-[#987232] text-white font-bold shadow-md"
+                          : "text-[#f5f7f5] hover:bg-[#12141a]"
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <Flame className={`w-4 h-4 ${isSelected ? "text-black" : "text-[#e6ff55]"}`} />
+                        <Flame className={`w-4 h-4 ${isSelected ? "text-white" : "text-[#c89f53]"}`} />
                         <span className="text-sm">{item.name}</span>
                       </div>
-                      <span className={`text-xs ${isSelected ? "text-black" : "text-[#71717a]"}`}>
+                      <span className={`text-xs ${isSelected ? "text-white" : "text-[#9e9d93]"}`}>
                         Ir a platillo →
                       </span>
                     </div>
@@ -270,38 +267,19 @@ export default function CommandMenu({
             </div>
           )}
 
-          {/* Quick Actions */}
-          <div>
-            <div className="px-3 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.1em] text-[#a1a1aa]">
-              Acciones Rápidas
-            </div>
-            <div className="space-y-1 mt-1">
-              <div
-                onClick={() => handleSelectCommand({ id: "action-order", type: "action" })}
-                className="flex items-center justify-between px-3.5 py-2.5 rounded-[14px] cursor-pointer hover:bg-[#18181b] text-white"
-              >
-                <div className="flex items-center gap-3">
-                  <ShoppingBag className="w-4 h-4 text-[#e6ff55]" />
-                  <span className="text-sm font-bold">Ver Mi Mesa / Orden Resumen</span>
-                </div>
-                <CornerDownLeft className="w-4 h-4 text-[#71717a]" />
-              </div>
-            </div>
-          </div>
-
         </div>
 
         {/* Command Footer Controls */}
-        <div className="px-4 py-2.5 bg-[#121214] border-t border-[#27272a] flex items-center justify-between text-[11px] text-[#71717a]">
+        <div className="px-4 py-2.5 bg-[#12141a] border-t border-[#232730] flex items-center justify-between text-[11px] text-[#9e9d93]">
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1">
-              <kbd className="px-1.5 py-0.5 rounded bg-black text-white text-[10px]">↑↓</kbd> Navegar
+              <kbd className="px-1.5 py-0.5 rounded bg-black text-[#f5f7f5] text-[10px]">↑↓</kbd> Navegar
             </span>
             <span className="flex items-center gap-1">
-              <kbd className="px-1.5 py-0.5 rounded bg-black text-white text-[10px]">↵</kbd> Seleccionar
+              <kbd className="px-1.5 py-0.5 rounded bg-black text-[#f5f7f5] text-[10px]">↵</kbd> Seleccionar
             </span>
           </div>
-          <span className="text-[#e6ff55] font-bold">PÚA Command Menu 6</span>
+          <span className="text-[#c89f53] font-bold">PÚA Command Menu 6</span>
         </div>
       </div>
     </div>

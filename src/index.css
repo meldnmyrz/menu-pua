@@ -2,15 +2,24 @@
 
 @theme {
   --color-black-pitch: #050505;
-  --color-card-dark: #121214;
-  --color-card-surface: #18181b;
-  --color-lime-glow: #e6ff55;
-  --color-silver-mercury: #e2e8f0;
-  --color-silver-platinum: #cbd5e1;
-  --color-silver-slate: #94a3b8;
-  --color-border-dark: #27272a;
-  --color-text-primary: #f4f4f5;
-  --color-text-muted: #a1a1aa;
+  --color-midnight: #0b0e14;
+  --color-card-dark: #12141a;
+  --color-card-surface: #191c2b;
+
+  --color-caramel: #987232;
+  --color-caramel-light: #c89f53;
+  --color-caramel-hover: #af853c;
+
+  --color-forest: #1e3524;
+  --color-forest-light: #2d4e36;
+
+  --color-mushroom: #d4d3c9;
+  --color-mist: #f5f7f5;
+  --color-smoke: #e3e5e2;
+
+  --color-border-dark: #232730;
+  --color-text-primary: #f5f7f5;
+  --color-text-muted: #d4d3c9;
 
   --font-sweetsans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
   --font-grenette: 'Cormorant Garamond', Georgia, serif;
@@ -27,7 +36,7 @@
   body {
     font-family: var(--font-sweetsanstext);
     background-color: #050505;
-    color: #f4f4f5;
+    color: #f5f7f5;
   }
 
   .font-display {
@@ -45,9 +54,15 @@
   }
 }
 
-/* Shimmering Silver Mercury Gradient Text */
-.gradient-silver-text {
-  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
+/* Shimmering Caramel Gradient Text */
+.gradient-caramel-text {
+  background: linear-gradient(135deg, #f5f7f5 0%, #c89f53 50%, #987232 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-mushroom-text {
+  background: linear-gradient(135deg, #ffffff 0%, #d4d3c9 50%, #9e9d93 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -61,57 +76,59 @@
   background: #050505;
 }
 ::-webkit-scrollbar-thumb {
-  background: #3f3f46;
+  background: #232730;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #cbd5e1;
+  background: #c89f53;
 }
 
 /* Glassmorphism Navigation */
 .sweet-nav-dark {
-  background-color: rgba(9, 9, 11, 0.92);
+  background-color: rgba(11, 14, 20, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.12);
+  border-bottom: 1px solid rgba(212, 211, 201, 0.15);
 }
 
-.pill-btn-lime {
-  background-color: #e6ff55;
-  color: #000000;
+.pill-btn-caramel {
+  background: linear-gradient(135deg, #987232 0%, #af853c 100%);
+  color: #ffffff;
   font-family: var(--font-sweetsanstext);
   font-weight: 800;
   border-radius: 9999px;
   padding: 14px 24px;
   letter-spacing: 0.02em;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 4px 20px rgba(152, 114, 50, 0.35);
 }
-.pill-btn-lime:hover {
-  background-color: #d8f533;
+.pill-btn-caramel:hover {
+  background: linear-gradient(135deg, #af853c 0%, #c89f53 100%);
   transform: translateY(-1px);
-  box-shadow: 0 10px 25px -5px rgba(230, 255, 85, 0.3);
+  box-shadow: 0 10px 25px -5px rgba(200, 159, 83, 0.45);
 }
 
-.pill-btn-silver {
-  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
-  color: #000000;
+.pill-btn-forest {
+  background-color: #1e3524;
+  color: #f5f7f5;
   font-family: var(--font-sweetsanstext);
   font-weight: 800;
   border-radius: 9999px;
   padding: 14px 24px;
   letter-spacing: 0.02em;
+  border: 1px solid #2d4e36;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 0 15px rgba(203, 213, 225, 0.3);
 }
-.pill-btn-silver:hover {
+.pill-btn-forest:hover {
+  background-color: #26432e;
   transform: translateY(-1px);
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 20px rgba(45, 78, 54, 0.4);
 }
 
-.pill-btn-outline-white {
+.pill-btn-outline-mushroom {
   background-color: transparent;
-  color: #ffffff;
-  border: 1.5px solid rgba(203, 213, 225, 0.3);
+  color: #d4d3c9;
+  border: 1.5px solid rgba(212, 211, 201, 0.3);
   font-family: var(--font-sweetsanstext);
   font-weight: 700;
   border-radius: 9999px;
@@ -119,59 +136,60 @@
   letter-spacing: 0.05em;
   transition: all 0.2s ease;
 }
-.pill-btn-outline-white:hover {
-  border-color: #cbd5e1;
-  color: #cbd5e1;
-  background-color: rgba(255, 255, 255, 0.06);
+.pill-btn-outline-mushroom:hover {
+  border-color: #c89f53;
+  color: #c89f53;
+  background-color: rgba(152, 114, 50, 0.08);
 }
 
 .ghost-text-link-white {
-  color: #f4f4f5;
+  color: #f5f7f5;
   font-weight: 700;
   font-size: 14px;
   display: inline-flex;
-  items-center: center;
+  align-items: center;
   gap: 4px;
   transition: opacity 0.2s ease;
 }
 .ghost-text-link-white:hover {
-  color: #cbd5e1;
+  color: #c89f53;
 }
 
 /* Badges */
-.badge-lime {
-  background-color: #e6ff55;
-  color: #000000;
+.badge-caramel {
+  background: linear-gradient(135deg, #987232 0%, #af853c 100%);
+  color: #ffffff;
   font-weight: 800;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 4px 12px;
   border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(152, 114, 50, 0.3);
 }
 
-.badge-silver {
-  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
-  color: #000000;
+.badge-forest {
+  background-color: #1e3524;
+  color: #f5f7f5;
   font-weight: 800;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 4px 12px;
   border-radius: 20px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  border: 1px solid #2d4e36;
 }
 
-.badge-dark {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #f4f4f5;
+.badge-mushroom {
+  background-color: rgba(212, 211, 201, 0.12);
+  color: #d4d3c9;
   font-weight: 700;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 4px 12px;
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(212, 211, 201, 0.2);
 }
 
 .no-scrollbar::-webkit-scrollbar {

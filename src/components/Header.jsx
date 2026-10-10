@@ -98,19 +98,19 @@ export default function Header({
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className={`flex items-center gap-1 py-1 transition-colors ${
-                  activeCategoryId ? "text-white font-extrabold" : "text-[#a1a1aa] hover:text-white"
+                  activeCategoryId ? "text-[#c89f53] font-extrabold" : "text-[#a1a1aa] hover:text-[#f5f7f5]"
                 }`}
               >
                 <span>MENÚ</span>
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isDropdownOpen ? "rotate-180 text-[#e6ff55]" : "text-[#a1a1aa]"}`} />
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isDropdownOpen ? "rotate-180 text-[#c89f53]" : "text-[#a1a1aa]"}`} />
               </button>
 
               {/* Glassmorphism Dropdown Menu */}
               {isDropdownOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-[#121214]/95 backdrop-blur-2xl border border-[#27272a] rounded-[20px] p-4 shadow-[0_20px_50px_rgba(0,0,0,0.9)] z-50 animate-fade-in">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-[#0b0e14]/95 backdrop-blur-2xl border border-[#232730] rounded-[20px] p-4 shadow-[0_20px_50px_rgba(0,0,0,0.95)] z-50 animate-fade-in">
                   {sections.map((sec) => (
                     <div key={sec.id} className="mb-3 last:mb-0">
-                      <div className="text-[10px] font-extrabold uppercase tracking-widest text-[#cbd5e1] px-3 py-1 border-b border-[#27272a]/60 mb-1">
+                      <div className="text-[10px] font-extrabold uppercase tracking-widest text-[#c89f53] px-3 py-1 border-b border-[#232730] mb-1">
                         {sec.title}
                       </div>
                       <div className="space-y-0.5">
@@ -123,13 +123,13 @@ export default function Header({
                             }}
                             className={`w-full text-left px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between transition-colors ${
                               activeCategoryId === cat.id
-                                ? "bg-[#e6ff55] text-black font-extrabold"
-                                : "text-[#a1a1aa] hover:text-white hover:bg-[#18181b]"
+                                ? "bg-[#987232] text-white font-extrabold"
+                                : "text-[#d4d3c9] hover:text-white hover:bg-[#191c2b]"
                             }`}
                           >
                             <span>{cat.name}</span>
                             {cat.items?.length > 0 && (
-                              <span className={`text-[10px] font-mono ${activeCategoryId === cat.id ? "text-black" : "text-[#cbd5e1]"}`}>
+                              <span className={`text-[10px] font-mono ${activeCategoryId === cat.id ? "text-white" : "text-[#c89f53]"}`}>
                                 {cat.items.length}
                               </span>
                             )}
