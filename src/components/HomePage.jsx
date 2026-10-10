@@ -1,5 +1,6 @@
 import React from 'react';
-import { Flame, Wine, ArrowRight, Sparkles, Command, ShieldCheck } from 'lucide-react';
+import HeroEclipse from './HeroEclipse';
+import { Flame, Wine, ArrowRight, Command } from 'lucide-react';
 
 export default function HomePage({
   sections,
@@ -12,39 +13,12 @@ export default function HomePage({
   return (
     <div className="max-w-[1200px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16 animate-fade-in">
       
-      {/* Hero Welcome Banner */}
-      <div className="relative rounded-[24px] p-8 sm:p-14 overflow-hidden bg-[#121214] border border-[#27272a] shadow-2xl">
-        <div className="max-w-2xl relative z-10">
-          <div className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.1em] text-[#e6ff55] mb-3">
-            <Flame className="w-4 h-4 text-[#e6ff55]" />
-            MENÚ GASTRONÓMICO OFICIAL
-          </div>
-
-          <h1 className="text-4xl sm:text-7xl font-display font-normal text-white leading-[0.85] tracking-tight">
-            PÚA BRASA Y VINO
-          </h1>
-
-          <p className="text-sm sm:text-base text-[#a1a1aa] font-normal mt-4 leading-relaxed">
-            Explora las páginas independientes de nuestro menú. Cada sección ofrece una selección curada de cortes Angus a las brasas, maridajes de la cava y mixología de autor.
-          </p>
-
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <button
-              onClick={() => setIsCommandMenuOpen(true)}
-              className="pill-btn-lime flex items-center gap-2.5 text-xs font-extrabold shadow-xl"
-            >
-              <Command className="w-4 h-4 text-black" />
-              <span>ABRIR NAVEGADOR DE PÁGINAS (⌘K)</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Decorative Image Overlay */}
-        <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden md:block opacity-25 pointer-events-none">
-          <img src="/assets/images/pua_ambiance.png" alt="PÚA Ambiance" className="w-full h-full object-cover filter blur-xs" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#121214] via-[#121214]/80 to-transparent" />
-        </div>
-      </div>
+      {/* React Bits Pro Hero 31: Scrubbable Eclipse/Ember Arc Time-Lapse Hero Block */}
+      <HeroEclipse
+        onExplorePlatillos={() => onSelectCategory("cortes", "platillos")}
+        onExploreBebidas={() => onSelectCategory("mixologia", "bebidas")}
+        setIsCommandMenuOpen={setIsCommandMenuOpen}
+      />
 
       {/* Section I: Independent Food Pages */}
       <div className="space-y-8">
