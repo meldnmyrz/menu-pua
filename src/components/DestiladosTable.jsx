@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
-import { Wine, Star } from 'lucide-react';
+import { Wine } from 'lucide-react';
 
 export default function DestiladosTable({ groups }) {
   const [selectedTab, setSelectedTab] = useState("Tequila");
 
   const activeGroup = groups.find(g => g.categoryName === selectedTab) || groups[0];
-
-  const handleReviewInMaps = () => {
-    window.open('https://www.google.com/maps/search/?api=1&query=PUA+Brasa+y+Vino', '_blank');
-  };
 
   return (
     <div className="w-full bg-[#0b0e14] rounded-[24px] p-6 sm:p-8 border border-[#232730] shadow-xl">
@@ -52,7 +48,6 @@ export default function DestiladosTable({ groups }) {
               <th className="py-3.5 px-4">Destilado / Vino</th>
               <th className="py-3.5 px-4 text-center">Copa</th>
               <th className="py-3.5 px-4 text-center">Botella</th>
-              <th className="py-3.5 px-4 text-right">Reseña</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-[#232730]/60 text-sm">
@@ -79,18 +74,6 @@ export default function DestiladosTable({ groups }) {
                     ) : (
                       <span className="text-[#64635a] text-xs">—</span>
                     )}
-                  </td>
-
-                  {/* Reseñar button */}
-                  <td className="py-4 px-4 text-right whitespace-nowrap">
-                    <button
-                      onClick={handleReviewInMaps}
-                      className="px-3 py-1 rounded-full bg-[#987232] hover:bg-[#af853c] text-white text-[10px] font-extrabold uppercase tracking-[0.05em] inline-flex items-center gap-1 transition-all cursor-pointer"
-                      title="Reseñar en Google Maps"
-                    >
-                      <Star className="w-3 h-3 text-amber-300 fill-amber-300" />
-                      <span>Reseñar</span>
-                    </button>
                   </td>
                 </tr>
               );

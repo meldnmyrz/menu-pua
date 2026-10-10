@@ -1,18 +1,13 @@
 import React from 'react';
-import { Clock, Wine, ArrowRight, Star } from 'lucide-react';
+import { Clock, Wine, ArrowRight } from 'lucide-react';
 
 export default function MenuItemCard({ item, onSelect }) {
   const isWaitTime = item.waitTime || (typeof item.description === 'string' && item.description.includes('Tiempo de espera'));
 
-  const handleReviewInMaps = (e) => {
-    e.stopPropagation();
-    window.open('https://www.google.com/maps/search/?api=1&query=PUA+Brasa+y+Vino', '_blank');
-  };
-
   return (
     <div
       onClick={() => onSelect(item)}
-      className="group relative flex flex-col justify-between cursor-pointer transition-all duration-300 bg-[#0b0e14] p-3 rounded-[24px] border border-[#232730] hover:border-[#c89f53]/60 hover:bg-[#12141a] shadow-lg"
+      className="group relative flex flex-col justify-between cursor-pointer transition-all duration-300 bg-[#0b0e14] p-3.5 rounded-[24px] border border-[#232730] hover:border-[#c89f53]/60 hover:bg-[#12141a] shadow-lg"
     >
       {/* Top Image & Badge Container */}
       <div className="relative w-full aspect-square bg-[#050505] rounded-[20px] overflow-hidden mb-4 border border-[#232730]">
@@ -85,19 +80,11 @@ export default function MenuItemCard({ item, onSelect }) {
         </div>
 
         {/* Card Footer Actions */}
-        <div className="mt-4 pt-3 border-t border-[#232730] flex items-center justify-between gap-2">
+        <div className="mt-4 pt-3 border-t border-[#232730] flex items-center justify-between">
           <span className="ghost-text-link-white text-xs text-[#f5f7f5] group-hover:text-[#c89f53]">
-            Ver detalles <ArrowRight className="w-3.5 h-3.5" />
+            Ver detalle completo
           </span>
-
-          <button
-            onClick={handleReviewInMaps}
-            className="px-3.5 py-1.5 rounded-full bg-[#987232] hover:bg-[#af853c] text-white text-[11px] font-extrabold uppercase tracking-[0.05em] flex items-center gap-1.5 transition-all shadow-md cursor-pointer"
-            title="Dejar reseña en Google Maps"
-          >
-            <Star className="w-3.5 h-3.5 text-amber-300 fill-amber-300" />
-            <span>RESEÑAR EN MAPS</span>
-          </button>
+          <ArrowRight className="w-4 h-4 text-[#c89f53] group-hover:translate-x-1 transition-transform" />
         </div>
       </div>
     </div>

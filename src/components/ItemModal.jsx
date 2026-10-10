@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, Wine, Clock, Star, Share2 } from 'lucide-react';
+import { X, Wine, Clock, Share2, Check } from 'lucide-react';
 
 export default function ItemModal({ item, onClose }) {
   const [copiedNote, setCopiedNote] = useState(false);
@@ -17,10 +17,6 @@ export default function ItemModal({ item, onClose }) {
 
   const handleCloseModal = () => {
     onClose();
-  };
-
-  const handleReviewInMaps = () => {
-    window.open('https://www.google.com/maps/search/?api=1&query=PUA+Brasa+y+Vino', '_blank');
   };
 
   const shareItem = () => {
@@ -109,22 +105,23 @@ export default function ItemModal({ item, onClose }) {
         </div>
 
         {/* Modal Action Buttons Footer */}
-        <div className="p-6 bg-[#050505] border-t border-[#232730] flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="p-6 bg-[#050505] border-t border-[#232730] flex items-center justify-end">
           <button
             onClick={shareItem}
-            className="w-full sm:w-auto px-5 py-3 rounded-full bg-[#12141a] text-[#f5f7f5] border border-[#232730] hover:border-[#c89f53] flex items-center justify-center gap-2 text-xs font-extrabold uppercase tracking-[0.05em] transition-all cursor-pointer"
+            className="pill-btn-caramel flex items-center justify-center gap-2 text-xs font-extrabold uppercase tracking-[0.05em] shadow-xl cursor-pointer"
             title="Copiar enlace directo al platillo"
           >
-            <Share2 className="w-4 h-4 text-[#c89f53]" />
-            <span>{copiedNote ? "¡ENLACE COPIADO!" : "COMPARTIR PLATILLO"}</span>
-          </button>
-
-          <button
-            onClick={handleReviewInMaps}
-            className="w-full sm:flex-1 pill-btn-caramel flex items-center justify-center gap-2 text-xs font-extrabold uppercase tracking-[0.05em] shadow-xl cursor-pointer"
-          >
-            <Star className="w-4 h-4 text-amber-300 fill-amber-300" />
-            <span>RESEÑAR EN GOOGLE MAPS</span>
+            {copiedNote ? (
+              <>
+                <Check className="w-4 h-4 text-white" />
+                <span>¡ENLACE COPIADO AL PORTAPAPELES!</span>
+              </>
+            ) : (
+              <>
+                <Share2 className="w-4 h-4 text-white" />
+                <span>COMPARTIR PLATILLO</span>
+              </>
+            )}
           </button>
         </div>
       </div>
