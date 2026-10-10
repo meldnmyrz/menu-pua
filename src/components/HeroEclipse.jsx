@@ -15,7 +15,7 @@ export default function HeroEclipse({ onExplorePlatillos, onExploreBebidas, setI
         title: "El Fuego Encendido de la Brasa",
         subtitle: "Cortes Angus madurados, aromática leña de encino y el aroma inconfundible de la parrilla encendida.",
         color: "#c89f53",
-        glowClass: "from-[#987232]/25 via-[#050505] to-[#050505]",
+        glowClass: "from-[#987232]/30 via-[#050505]/50 to-[#050505]",
         badge: "ENCENDIDO DE PARRILLA"
       };
     } else if (val < 70) {
@@ -24,7 +24,7 @@ export default function HeroEclipse({ onExplorePlatillos, onExploreBebidas, setI
         title: "La Hora Dorada de la Cava",
         subtitle: "Maridajes refinados, charcutería de autor y copas servidas bajo la cálida luz del atardecer.",
         color: "#d4d3c9",
-        glowClass: "from-[#d4d3c9]/20 via-[#050505] to-[#050505]",
+        glowClass: "from-[#d4d3c9]/25 via-[#050505]/50 to-[#050505]",
         badge: "HORA DEL VINO"
       };
     } else {
@@ -33,7 +33,7 @@ export default function HeroEclipse({ onExplorePlatillos, onExploreBebidas, setI
         title: "Sabores Enigmáticos en la Noche",
         subtitle: "Tragos de autor, aromas cítricos, infusiones artesanales y una atmósfera lounge sofisticada.",
         color: "#2d4e36",
-        glowClass: "from-[#1e3524]/40 via-[#050505] to-[#050505]",
+        glowClass: "from-[#1e3524]/50 via-[#050505]/50 to-[#050505]",
         badge: "MIXOLOGÍA NOCTURNA"
       };
     }
@@ -50,18 +50,29 @@ export default function HeroEclipse({ onExplorePlatillos, onExploreBebidas, setI
   };
 
   return (
-    <div className="relative w-full rounded-[28px] overflow-hidden border border-[#232730] bg-[#050505] shadow-2xl transition-colors duration-700">
+    <section className="relative w-full min-h-[85vh] sm:min-h-screen flex items-center justify-center border-b border-[#232730] overflow-hidden bg-black text-[#f5f7f5] -mt-[64px] pt-[80px] sm:pt-[90px]">
       
-      {/* Dynamic Time-lapse Gradient Background */}
-      <div
-        className={`absolute inset-0 bg-gradient-to-b ${atmosphere.glowClass} opacity-90 pointer-events-none transition-all duration-700`}
+      {/* Background Video (PUA HEAD OF.mp4) Edge-to-Edge */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover scale-105 pointer-events-none z-0 filter brightness-[0.7] contrast-[1.1]"
+        src="/assets/videos/pua_head_of.mp4"
       />
 
+      {/* Dynamic Time-lapse Gradient Overlay */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-b ${atmosphere.glowClass} pointer-events-none z-1 transition-all duration-700`}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-[#050505]/70 pointer-events-none z-1" />
+
       {/* Hero Content Layer */}
-      <div className="relative z-10 p-8 sm:p-14 max-w-4xl mx-auto text-center space-y-8">
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center space-y-8">
         
         {/* Atmosphere Time-lapse Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0b0e14] border border-[#232730] shadow-lg">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0b0e14]/90 backdrop-blur-md border border-[#232730] shadow-2xl">
           <Sparkles className="w-3.5 h-3.5" style={{ color: atmosphere.color }} />
           <span className="text-xs font-extrabold tracking-[0.1em] text-[#f5f7f5]">
             {atmosphere.timeLabel}
@@ -69,18 +80,18 @@ export default function HeroEclipse({ onExplorePlatillos, onExploreBebidas, setI
         </div>
 
         {/* Main Hero Headline */}
-        <div>
-          <h1 className="text-5xl sm:text-7xl font-display font-normal text-[#f5f7f5] leading-[0.85] tracking-tight">
+        <div className="space-y-4">
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-display font-normal text-[#f5f7f5] leading-[0.85] tracking-tight drop-shadow-2xl">
             {atmosphere.title}
           </h1>
-          <p className="text-sm sm:text-base text-[#d4d3c9] font-normal mt-4 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base lg:text-lg text-[#d4d3c9] font-normal max-w-3xl mx-auto leading-relaxed drop-shadow">
             {atmosphere.subtitle}
           </p>
         </div>
 
         {/* Interactive Eclipse / Ember Time-lapse Arc Scrubber (Hero 31 Block) */}
-        <div className="py-6 space-y-4">
-          <div className="flex items-center justify-between text-xs font-bold text-[#9e9d93] uppercase tracking-wider px-2">
+        <div className="py-4 max-w-3xl mx-auto space-y-3">
+          <div className="flex items-center justify-between text-xs font-bold text-[#d4d3c9] uppercase tracking-wider px-2 drop-shadow">
             <span className="flex items-center gap-1.5 text-[#c89f53]">
               <Sun className="w-4 h-4" /> 14:00h Brasas
             </span>
@@ -112,7 +123,7 @@ export default function HeroEclipse({ onExplorePlatillos, onExploreBebidas, setI
               <path
                 d="M 10,75 Q 200,-15 390,75"
                 fill="none"
-                stroke="#232730"
+                stroke="rgba(212, 211, 201, 0.3)"
                 strokeWidth="4"
                 strokeDasharray="6 6"
               />
@@ -135,10 +146,10 @@ export default function HeroEclipse({ onExplorePlatillos, onExploreBebidas, setI
                 left: `${scrubValue}%`,
                 top: `${75 - Math.sin((scrubValue / 100) * Math.PI) * 65}%`,
                 backgroundColor: atmosphere.color,
-                boxShadow: `0 0 25px ${atmosphere.color}`
+                boxShadow: `0 0 30px ${atmosphere.color}`
               }}
             >
-              <div className="w-3 h-3 rounded-full bg-[#0b0e14]" />
+              <div className="w-3.5 h-3.5 rounded-full bg-[#0b0e14]" />
             </div>
           </div>
         </div>
@@ -155,7 +166,7 @@ export default function HeroEclipse({ onExplorePlatillos, onExploreBebidas, setI
 
           <button
             onClick={onExploreBebidas}
-            className="pill-btn-outline-mushroom flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.05em]"
+            className="pill-btn-outline-mushroom flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.05em] bg-black/40 backdrop-blur-md"
           >
             <Wine className="w-4 h-4 text-[#c89f53]" />
             <span>VER CAVA & MIXOLOGÍA</span>
@@ -163,6 +174,6 @@ export default function HeroEclipse({ onExplorePlatillos, onExploreBebidas, setI
         </div>
 
       </div>
-    </div>
+    </section>
   );
 }
