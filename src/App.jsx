@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { MENU_DATA } from './data/menuData';
 import Header from './components/Header';
-import CategoryNav from './components/CategoryNav';
 import HomePage from './components/HomePage';
 import CategoryPage from './components/CategoryPage';
 import ItemModal from './components/ItemModal';
@@ -105,16 +104,11 @@ export default function App() {
           setActiveCategoryId(null);
           window.location.hash = '';
         }}
-        filteredCount={0}
+        activeCategoryId={activeCategoryId}
+        onNavigateCategory={(catId, secId) => navigateToCategory(catId, secId)}
+        onBackToHome={() => navigateToCategory(null)}
         setIsCommandMenuOpen={setIsCommandMenuOpen}
-      />
-
-      {/* Category Navigation Bar */}
-      <CategoryNav
-        categories={currentSection.categories}
-        activeCategoryId={activeCategoryId || 'all'}
-        setActiveCategoryId={(id) => navigateToCategory(id)}
-        activeSectionId={activeSectionId}
+        sections={MENU_DATA.sections}
       />
 
       {/* Main Page Area */}

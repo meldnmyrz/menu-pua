@@ -12,10 +12,12 @@ export default function Header({
   activeCategoryId,
   onNavigateCategory,
   onBackToHome,
-  setIsCommandMenuOpen
+  setIsCommandMenuOpen,
+  sections = []
 }) {
   const [lang, setLang] = useState("ES");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,7 +38,7 @@ export default function Header({
       <div
         className={`pointer-events-auto transition-all duration-500 ease-out mx-auto ${
           isScrolled
-            ? "max-w-[1200px] mt-3 px-4 sm:px-6 rounded-full bg-[#050505]/90 backdrop-blur-2xl border border-[#cbd5e1]/30 shadow-[0_20px_50px_rgba(0,0,0,0.95)] py-2 sm:py-2.5 scale-[0.99]"
+            ? "max-w-[1200px] mt-3 px-4 sm:px-6 rounded-full bg-[#050505]/95 backdrop-blur-2xl border border-[#cbd5e1]/30 shadow-[0_20px_50px_rgba(0,0,0,0.95)] py-2 sm:py-2.5 scale-[0.99]"
             : "max-w-full bg-[#050505] px-4 sm:px-8 border-b border-[#27272a] py-3.5"
         }`}
       >
@@ -73,8 +75,8 @@ export default function Header({
             </div>
           </div>
 
-          {/* Center: Navigation Links */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-xs font-bold uppercase tracking-[0.08em]">
+          {/* Center: Navigation Links with Mega Dropdown */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-xs font-bold uppercase tracking-[0.08em] relative">
             <button
               onClick={onBackToHome}
               className={`flex flex-col items-center gap-1 transition-colors ${
@@ -87,30 +89,69 @@ export default function Header({
               )}
             </button>
 
-            <button
-              onClick={() => onNavigateCategory("cortes", "platillos")}
-              className={`flex flex-col items-center gap-1 transition-colors ${
-                activeCategoryId ? "text-white" : "text-[#a1a1aa] hover:text-white"
-              }`}
+            {/* Menu Dropdown Trigger */}
+            <div
+              className="relative"
+              onMouseEnter={() => setIsDropdownOpen(true)}
+              onMouseLeave={() => setIsDropdownOpen(false)}
             >
-              <span className="flex items-center gap-1">
-                MENÚ <ChevronDown className="w-3 h-3 text-[#a1a1aa]" />
-              </span>
-              {activeCategoryId && (
-                <span className="w-1.5 h-1.5 rounded-full bg-[#cbd5e1] shadow-[0_0_8px_#cbd5e1]" />
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className={`flex items-center gap-1 py-1 transition-colors ${
+                  activeCategoryId ? "text-white font-extrabold" : "text-[#a1a1aa] hover:text-white"
+                }`}
+              >
+                <span>MENÚ</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isDropdownOpen ? "rotate-180 text-[#e6ff55]" : "text-[#a1a1aa]"}`} />
+              </button>
+
+              {/* Glassmorphism Dropdown Menu */}
+              {isDropdownOpen && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-72 bg-[#121214]/95 backdrop-blur-2xl border border-[#27272a] rounded-[20px] p-4 shadow-[0_20px_50px_rgba(0,0,0,0.9)] z-50 animate-fade-in">
+                  {sections.map((sec) => (
+                    <div key={sec.id} className="mb-3 last:mb-0">
+                      <div className="text-[10px] font-extrabold uppercase tracking-widest text-[#cbd5e1] px-3 py-1 border-b border-[#27272a]/60 mb-1">
+                        {sec.title}
+                      </div>
+                      <div className="space-y-0.5">
+                        {sec.categories.map((cat) => (
+                          <button
+                            key={cat.id}
+                            onClick={() => {
+                              onNavigateCategory(cat.id, sec.id);
+                              setIsDropdownOpen(false);
+                            }}
+                            className={`w-full text-left px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between transition-colors ${
+                              activeCategoryId === cat.id
+                                ? "bg-[#e6ff55] text-black font-extrabold"
+                                : "text-[#a1a1aa] hover:text-white hover:bg-[#18181b]"
+                            }`}
+                          >
+                            <span>{cat.name}</span>
+                            {cat.items?.length > 0 && (
+                              <span className={`text-[10px] font-mono ${activeCategoryId === cat.id ? "text-black" : "text-[#cbd5e1]"}`}>
+                                {cat.items.length}
+                              </span>
+                            )}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               )}
-            </button>
+            </div>
 
             <button
               onClick={() => onNavigateCategory("maridaje", "platillos")}
-              className="text-[#a1a1aa] hover:text-white transition-colors"
+              className={`transition-colors ${activeCategoryId === "maridaje" ? "text-white font-bold" : "text-[#a1a1aa] hover:text-white"}`}
             >
               MARIDAJES
             </button>
 
             <button
               onClick={() => onNavigateCategory("mixologia", "bebidas")}
-              className="text-[#a1a1aa] hover:text-white transition-colors"
+              className={`transition-colors ${activeCategoryId === "mixologia" ? "text-white font-bold" : "text-[#a1a1aa] hover:text-white"}`}
             >
               BEBIDAS & CAVA
             </button>
