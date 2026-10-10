@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, ShoppingBag, Flame, Wine, Bell, User, ChevronDown, Command, Sparkles } from 'lucide-react';
+import { Search, ShoppingBag, Flame, Wine, Bell, User, ChevronDown, Command } from 'lucide-react';
 
 export default function Header({
   restaurant,
@@ -17,7 +17,6 @@ export default function Header({
   const [lang, setLang] = useState("ES");
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Navbar 12: Scroll Listener for Floating Lift Effect
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 30) {
@@ -33,11 +32,11 @@ export default function Header({
   return (
     <header className="sticky top-0 z-40 w-full transition-all duration-300 pointer-events-none">
       
-      {/* Navbar 12 Floating Capsule Container */}
+      {/* Floating Navbar Container */}
       <div
         className={`pointer-events-auto transition-all duration-500 ease-out mx-auto ${
           isScrolled
-            ? "max-w-[1200px] mt-3 px-4 sm:px-6 rounded-full bg-[#050505]/90 backdrop-blur-2xl border border-[#e6ff55]/30 shadow-[0_20px_50px_rgba(0,0,0,0.95)] py-2 sm:py-2.5 scale-[0.99]"
+            ? "max-w-[1200px] mt-3 px-4 sm:px-6 rounded-full bg-[#050505]/90 backdrop-blur-2xl border border-[#cbd5e1]/30 shadow-[0_20px_50px_rgba(0,0,0,0.95)] py-2 sm:py-2.5 scale-[0.99]"
             : "max-w-full bg-[#050505] px-4 sm:px-8 border-b border-[#27272a] py-3.5"
         }`}
       >
@@ -64,10 +63,10 @@ export default function Header({
                 }`}>
                   púa
                 </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#e6ff55] animate-pulse ml-0.5 mb-1.5" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#cbd5e1] shadow-[0_0_8px_#cbd5e1] ml-0.5 mb-1.5" />
               </div>
               {!isScrolled && (
-                <span className="text-[9px] font-extrabold uppercase tracking-[0.25em] text-[#d97706] leading-none mt-0.5">
+                <span className="text-[9px] font-extrabold uppercase tracking-[0.25em] text-[#cbd5e1] leading-none mt-0.5">
                   BRASA Y VINO
                 </span>
               )}
@@ -84,7 +83,7 @@ export default function Header({
             >
               <span>INICIO</span>
               {!activeCategoryId && (
-                <span className="w-1.5 h-1.5 rounded-full bg-[#e6ff55] shadow-[0_0_8px_#e6ff55]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#cbd5e1] shadow-[0_0_8px_#cbd5e1]" />
               )}
             </button>
 
@@ -98,7 +97,7 @@ export default function Header({
                 MENÚ <ChevronDown className="w-3 h-3 text-[#a1a1aa]" />
               </span>
               {activeCategoryId && (
-                <span className="w-1.5 h-1.5 rounded-full bg-[#e6ff55] shadow-[0_0_8px_#e6ff55]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#cbd5e1] shadow-[0_0_8px_#cbd5e1]" />
               )}
             </button>
 
@@ -140,13 +139,13 @@ export default function Header({
             {/* Bell Notification / Command Menu Launcher ⌘K */}
             <button
               onClick={() => setIsCommandMenuOpen(true)}
-              className="p-2 rounded-full text-[#a1a1aa] hover:text-[#e6ff55] hover:bg-[#18181b] transition-colors"
+              className="p-2 rounded-full text-[#a1a1aa] hover:text-[#cbd5e1] hover:bg-[#18181b] transition-colors"
               title="Buscar / Command Menu (⌘K)"
             >
               <Bell className="w-4 h-4" />
             </button>
 
-            {/* Lime Glow "MI MESA" Pill Button */}
+            {/* Lime / Silver Glow "MI MESA" Pill Button */}
             <button
               onClick={() => setIsOrderOpen(true)}
               className={`rounded-full bg-[#e6ff55] text-black font-extrabold text-xs uppercase tracking-wider flex items-center gap-2 shadow-[0_0_20px_rgba(230,255,85,0.4)] hover:shadow-[0_0_30px_rgba(230,255,85,0.6)] hover:bg-[#d8f533] transition-all transform active:scale-95 ${
@@ -165,7 +164,7 @@ export default function Header({
         </div>
       </div>
 
-      {/* Sub-Header Control Bar (Only shown when not deeply scrolled) */}
+      {/* Sub-Header Control Bar */}
       {!isScrolled && (
         <div className="pointer-events-auto bg-[#09090b] border-t border-[#18181b] py-2 px-4 sm:px-6 transition-all duration-300">
           <div className="max-w-[1280px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
@@ -213,16 +212,16 @@ export default function Header({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Buscar en el menú..."
-                className="w-full pl-9 pr-8 py-1.5 rounded-full bg-[#121214] border border-[#27272a] text-white text-xs placeholder-[#71717a] focus:outline-none focus:border-[#e6ff55] transition-all"
+                className="w-full pl-9 pr-8 py-1.5 rounded-full bg-[#121214] border border-[#27272a] text-white text-xs placeholder-[#71717a] focus:outline-none focus:border-[#cbd5e1] transition-all"
               />
             </div>
           </div>
         </div>
       )}
 
-      {/* Ambient Lime Glow Line Divider */}
+      {/* Ambient Silver Glow Line Divider */}
       {!isScrolled && (
-        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#e6ff55]/60 to-transparent shadow-[0_2px_15px_rgba(230,255,85,0.4)]" />
+        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#cbd5e1]/60 to-transparent shadow-[0_2px_15px_rgba(203,213,225,0.4)]" />
       )}
     </header>
   );
