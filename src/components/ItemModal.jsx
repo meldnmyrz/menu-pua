@@ -42,7 +42,7 @@ export default function ItemModal({ item, onClose }) {
         {/* Close Button */}
         <button
           onClick={handleCloseModal}
-          className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-black/80 text-[#f5f7f5] hover:text-[#c89f53] border border-[#232730] transition-all cursor-pointer"
+          className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-black/80 text-[#f5f7f5] hover:text-[#cbd5e1] hover:border-[#cbd5e1]/40 border border-[#232730] transition-all cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
@@ -66,8 +66,8 @@ export default function ItemModal({ item, onClose }) {
                 PÚA GASTRONOMÍA
               </span>
               {isWaitTime && (
-                <span className="badge-caramel flex items-center gap-1">
-                  <Clock className="w-3.5 h-3.5 text-white" />
+                <span className="badge-silver flex items-center gap-1 shadow-md">
+                  <Clock className="w-3.5 h-3.5 text-black" />
                   TIEMPO DE ESPERA
                 </span>
               )}
@@ -77,7 +77,7 @@ export default function ItemModal({ item, onClose }) {
               <h2 className="text-3xl sm:text-5xl font-display font-normal text-[#f5f7f5] leading-tight">
                 {item.name}
               </h2>
-              <span className="text-2xl sm:text-3xl font-extrabold text-[#c89f53] whitespace-nowrap">
+              <span className="text-2xl sm:text-3xl font-extrabold text-[#e2e8f0] bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent whitespace-nowrap">
                 {typeof item.price === 'number' ? `$${item.price.toLocaleString('es-MX')}` : item.price}
               </span>
             </div>
@@ -92,34 +92,34 @@ export default function ItemModal({ item, onClose }) {
 
           {/* Sommelier Pairing Banner */}
           {item.pairing && (
-            <div className="p-5 rounded-[16px] bg-[#1e3524]/60 border border-[#2d4e36] text-[#c89f53]">
+            <div className="p-5 rounded-[16px] bg-[#12141a] border border-[#232730] text-[#cbd5e1]">
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.05em] mb-1 text-[#f5f7f5]">
-                <Wine className="w-4 h-4 text-[#c89f53]" />
+                <Wine className="w-4 h-4 text-[#cbd5e1]" />
                 MARIDAJE SUGERIDO POR EL SOMMELIER
               </div>
               <p className="text-sm font-medium">
-                Recomendamos acompañar este platillo con: <span className="font-bold text-[#c89f53] underline">{item.pairing}</span>
+                Recomendamos acompañar este platillo con: <span className="font-bold text-[#f5f7f5] underline decoration-[#94a3b8]">{item.pairing}</span>
               </p>
             </div>
           )}
         </div>
 
         {/* Modal Action Buttons Footer */}
-        <div className="p-6 bg-[#050505] border-t border-[#232730] flex items-center justify-end">
+        <div className="p-5 sm:p-6 bg-[#050505] border-t border-[#232730] flex items-center justify-center">
           <button
             onClick={shareItem}
-            className="pill-btn-caramel flex items-center justify-center gap-2 text-xs font-extrabold uppercase tracking-[0.05em] shadow-xl cursor-pointer"
+            className="pill-btn-silver w-full sm:w-auto max-w-sm flex items-center justify-center gap-2.5 text-xs font-extrabold uppercase tracking-[0.05em] shadow-xl cursor-pointer"
             title="Copiar enlace directo al platillo"
           >
             {copiedNote ? (
               <>
-                <Check className="w-4 h-4 text-white" />
-                <span>¡ENLACE COPIADO AL PORTAPAPELES!</span>
+                <Check className="w-4 h-4 text-[#0b0e14]" />
+                <span className="text-[#0b0e14]">¡ENLACE COPIADO AL PORTAPAPELES!</span>
               </>
             ) : (
               <>
-                <Share2 className="w-4 h-4 text-white" />
-                <span>COMPARTIR PLATILLO</span>
+                <Share2 className="w-4 h-4 text-[#0b0e14]" />
+                <span className="text-[#0b0e14]">COMPARTIR PLATILLO</span>
               </>
             )}
           </button>

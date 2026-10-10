@@ -31,8 +31,8 @@ export default function MenuItemCard({ item, onSelect }) {
         {/* Badge Top-Left */}
         <div className="absolute top-3 left-3 flex flex-col gap-1 z-10">
           {isWaitTime && (
-            <span className="badge-caramel flex items-center gap-1 shadow-md">
-              <Clock className="w-3 h-3 text-white" />
+            <span className="badge-silver flex items-center gap-1 shadow-md">
+              <Clock className="w-3 h-3 text-black" />
               TIEMPO DE ESPERA
             </span>
           )}
@@ -55,10 +55,10 @@ export default function MenuItemCard({ item, onSelect }) {
       <div className="px-2 flex-1 flex flex-col justify-between">
         <div>
           <div className="flex items-start justify-between gap-2 mb-2">
-            <h3 className="text-xl font-bold text-[#f5f7f5] group-hover:text-[#c89f53] transition-colors leading-snug">
+            <h3 className="text-xl font-bold text-[#f5f7f5] group-hover:text-white transition-colors leading-snug">
               {item.name}
             </h3>
-            <span className="text-lg font-extrabold text-[#c89f53] whitespace-nowrap">
+            <span className="text-lg font-extrabold text-[#e2e8f0] bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent whitespace-nowrap">
               {typeof item.price === 'number' ? `$${item.price.toLocaleString('es-MX')}` : item.price}
             </span>
           </div>

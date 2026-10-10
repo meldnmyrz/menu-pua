@@ -61,7 +61,7 @@ export default function DestiladosTable({ groups }) {
                   {/* Copa Cell */}
                   <td className="py-4 px-4 text-center whitespace-nowrap">
                     {item.copa ? (
-                      <span className="font-extrabold text-[#c89f53]">${item.copa.toLocaleString('es-MX')}</span>
+                      <span className="font-extrabold text-[#cbd5e1]">${item.copa.toLocaleString('es-MX')}</span>
                     ) : (
                       <span className="text-[#64635a] text-xs">—</span>
                     )}
@@ -70,7 +70,7 @@ export default function DestiladosTable({ groups }) {
                   {/* Botella Cell */}
                   <td className="py-4 px-4 text-center whitespace-nowrap">
                     {item.botella ? (
-                      <span className="font-extrabold text-[#c89f53]">${item.botella.toLocaleString('es-MX')}</span>
+                      <span className="font-extrabold text-[#cbd5e1]">${item.botella.toLocaleString('es-MX')}</span>
                     ) : (
                       <span className="text-[#64635a] text-xs">—</span>
                     )}
