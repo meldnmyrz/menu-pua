@@ -155,13 +155,6 @@ export default function Header({
             >
               BEBIDAS & CAVA
             </button>
-
-            <button
-              onClick={() => setIsOrderOpen(true)}
-              className="text-[#a1a1aa] hover:text-white transition-colors"
-            >
-              RESERVAS
-            </button>
           </nav>
 
           {/* Right: Controls & Floating "MI MESA" Button */}
