@@ -1,78 +1,137 @@
 import React from 'react';
-import { Flame, Phone, Clock, Camera } from 'lucide-react';
+import { Flame, Star, Camera, ArrowUpRight, Wine, MapPin, Clock } from 'lucide-react';
 
 export default function Footer({ restaurant }) {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleReviewInMaps = () => {
+    window.open('https://www.google.com/maps/search/?api=1&query=PUA+Brasa+y+Vino', '_blank');
+  };
+
   return (
-    <footer className="w-full bg-[#050505] border-t border-[#232730] text-[#d4d3c9] text-sm py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-[#232730]">
-        
-        <div className="flex flex-col items-start gap-4">
-          <div className="w-20 h-20 rounded-2xl overflow-hidden border border-[#232730] shadow-xl bg-black">
-            <img
-              src={restaurant.logo}
-              alt="PÚA Logo"
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div>
-            <div className="inline-flex items-center gap-2 text-[#c89f53] font-bold text-xs uppercase tracking-[0.05em] mb-1">
-              <Flame className="w-4 h-4 text-[#c89f53]" />
-              {restaurant.subtitle}
+    <footer className="w-full bg-[#050505] border-t border-[#232730] text-[#d4d3c9] pt-20 pb-10 overflow-hidden relative">
+      
+      {/* Upper Sitemap Container */}
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-16 border-b border-[#232730]">
+          
+          {/* Col 1: Brand Info */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl overflow-hidden border border-[#232730] bg-black flex-shrink-0">
+                <img
+                  src={restaurant.logo}
+                  alt="PÚA Logo"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <span className="font-bold text-xl text-[#f5f7f5] leading-none block">púa</span>
+                <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#c89f53]">
+                  BRASA Y VINO
+                </span>
+              </div>
             </div>
-            <h2 className="text-4xl font-display font-normal text-[#f5f7f5] leading-none">
-              {restaurant.name}
-            </h2>
-            <p className="text-xs text-[#d4d3c9] font-normal mt-2 max-w-sm leading-relaxed">
-              {restaurant.description}
+            <p className="text-xs text-[#9e9d93] leading-relaxed font-normal">
+              Cortes Angus madurados a la brasa, leña de encino, cocina de mar y una cava exclusiva de vinos y mixología de autor.
             </p>
-          </div>
-        </div>
-
-        <div>
-          <h4 className="text-xs font-extrabold text-[#c89f53] uppercase tracking-[0.05em] mb-3">
-            EXPERIENCIA PÚA
-          </h4>
-          <ul className="space-y-2.5 text-xs text-[#f5f7f5]">
-            <li className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#c89f53]" />
-              Cortes Angus a las brasas y leña de encino
-            </li>
-            <li className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#c89f53]" />
-              Mixología contemporánea y maridajes exclusivos
-            </li>
-            <li className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#c89f53]" />
-              Cocina de mar fresca y recetas de autor
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="text-xs font-extrabold text-[#c89f53] uppercase tracking-[0.05em] mb-3">
-            RESERVACIONES
-          </h4>
-          <div className="space-y-2.5 text-xs text-[#f5f7f5]">
-            <div className="flex items-center gap-2">
-              <Camera className="w-4 h-4 text-[#c89f53]" />
-              <span>{restaurant.instagram}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4 text-[#c89f53]" />
-              <span>Reserva directa en mesa con tu mesero</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Clock className="w-4 h-4 text-[#c89f53]" />
-              <span>Abierto de Martes a Domingo</span>
+            <div className="pt-2">
+              <button
+                onClick={handleReviewInMaps}
+                className="px-4 py-2 rounded-full bg-[#987232] hover:bg-[#af853c] text-white text-xs font-extrabold uppercase tracking-[0.05em] inline-flex items-center gap-2 transition-all shadow-md cursor-pointer"
+              >
+                <Star className="w-3.5 h-3.5 text-amber-300 fill-amber-300" />
+                <span>Reseñar en Google Maps</span>
+              </button>
             </div>
           </div>
+
+          {/* Col 2: Platillos Sitemap */}
+          <div className="space-y-3">
+            <h4 className="text-xs font-extrabold text-[#c89f53] uppercase tracking-[0.1em] flex items-center gap-1.5">
+              <Flame className="w-4 h-4 text-[#c89f53]" />
+              Páginas de Platillos
+            </h4>
+            <ul className="space-y-2 text-xs text-[#d4d3c9]">
+              <li><a href="#/section/cortes" className="hover:text-white transition-colors">Cortes de Carne Prime</a></li>
+              <li><a href="#/section/maridaje" className="hover:text-white transition-colors">Maridajes & Charcutería</a></li>
+              <li><a href="#/section/entradas" className="hover:text-white transition-colors">Entradas a la Brasa</a></li>
+              <li><a href="#/section/sopas" className="hover:text-white transition-colors">Sopas & Cremas</a></li>
+              <li><a href="#/section/ensaladas" className="hover:text-white transition-colors">Ensaladas Frescas</a></li>
+              <li><a href="#/section/pastas" className="hover:text-white transition-colors">Pastas Artesanales</a></li>
+              <li><a href="#/section/mar" className="hover:text-white transition-colors">Cocina de Mar</a></li>
+              <li><a href="#/section/postres" className="hover:text-white transition-colors">Postres de Autor</a></li>
+            </ul>
+          </div>
+
+          {/* Col 3: Cava & Mixología Sitemap */}
+          <div className="space-y-3">
+            <h4 className="text-xs font-extrabold text-[#c89f53] uppercase tracking-[0.1em] flex items-center gap-1.5">
+              <Wine className="w-4 h-4 text-[#c89f53]" />
+              Cava & Mixología
+            </h4>
+            <ul className="space-y-2 text-xs text-[#d4d3c9]">
+              <li><a href="#/section/mixologia" className="hover:text-white transition-colors">Mixología de Autor</a></li>
+              <li><a href="#/section/vinos" className="hover:text-white transition-colors">Selección de Destilados</a></li>
+              <li><a href="#/section/vinos" className="hover:text-white transition-colors">Tequila & Mezcal Premium</a></li>
+              <li><a href="#/section/vinos" className="hover:text-white transition-colors">Vinos Tintos & Blancos</a></li>
+              <li><a href="#/section/mixologia" className="hover:text-white transition-colors">Cócteles Insignia</a></li>
+            </ul>
+          </div>
+
+          {/* Col 4: Horarios & Información */}
+          <div className="space-y-3">
+            <h4 className="text-xs font-extrabold text-[#c89f53] uppercase tracking-[0.1em]">
+              Información & Contacto
+            </h4>
+            <div className="space-y-2.5 text-xs text-[#d4d3c9]">
+              <div className="flex items-center gap-2">
+                <Camera className="w-4 h-4 text-[#c89f53]" />
+                <span>{restaurant.instagram}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-[#c89f53]" />
+                <span>Martes a Domingo: 13:00 - 00:00 hrs</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-[#c89f53]" />
+                <span>Experiencia Brasa y Vino en Mesa</span>
+              </div>
+            </div>
+
+            <div className="pt-3">
+              <button
+                onClick={scrollToTop}
+                className="px-3.5 py-1.5 rounded-full bg-[#12141a] border border-[#232730] text-[#d4d3c9] hover:text-white text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer"
+              >
+                <span>VOLVER ARRIBA</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#c89f53]" />
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <div className="max-w-[1200px] mx-auto pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#9e9d93]">
+      {/* Footer 9 Giant Wordmark Section (React Bits Pro Block) */}
+      <div className="w-full my-8 py-6 border-y border-[#232730]/60 overflow-hidden flex items-center justify-center select-none">
+        <h1 className="text-[12vw] sm:text-[11vw] font-display font-normal text-[#12141a] hover:text-[#181c24] transition-colors leading-none tracking-tighter text-center uppercase whitespace-nowrap">
+          PÚA BRASA Y VINO
+        </h1>
+      </div>
+
+      {/* Bottom Bar Credits & Copyright */}
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#9e9d93]">
         <p>© {new Date().getFullYear()} PÚA Brasa y Vino. Menú Gastronómico Oficial.</p>
-        <p className="font-bold text-[#c89f53]">PÚA BRASA Y VINO</p>
+        <div className="flex items-center gap-4">
+          <span>React Bits Pro — Footer 9</span>
+          <span className="w-1 h-1 rounded-full bg-[#c89f53]" />
+          <span className="font-bold text-[#c89f53]">PÚA GASTRONOMÍA</span>
+        </div>
       </div>
+
     </footer>
   );
 }
