@@ -1,8 +1,13 @@
 import React from 'react';
-import { Clock, Wine, ArrowRight, Check, Plus } from 'lucide-react';
+import { Clock, Wine, ArrowRight, Star } from 'lucide-react';
 
-export default function MenuItemCard({ item, onSelect, onAddToOrder, isAdded }) {
+export default function MenuItemCard({ item, onSelect }) {
   const isWaitTime = item.waitTime || (typeof item.description === 'string' && item.description.includes('Tiempo de espera'));
+
+  const handleReviewInMaps = (e) => {
+    e.stopPropagation();
+    window.open('https://www.google.com/maps/search/?api=1&query=PUA+Brasa+y+Vino', '_blank');
+  };
 
   return (
     <div
@@ -80,33 +85,18 @@ export default function MenuItemCard({ item, onSelect, onAddToOrder, isAdded }) 
         </div>
 
         {/* Card Footer Actions */}
-        <div className="mt-4 pt-3 border-t border-[#232730] flex items-center justify-between">
+        <div className="mt-4 pt-3 border-t border-[#232730] flex items-center justify-between gap-2">
           <span className="ghost-text-link-white text-xs text-[#f5f7f5] group-hover:text-[#c89f53]">
             Ver detalles <ArrowRight className="w-3.5 h-3.5" />
           </span>
 
           <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onAddToOrder(item);
-            }}
-            className={`px-4 py-2 rounded-full text-xs font-extrabold uppercase tracking-[0.05em] flex items-center gap-1.5 transition-all ${
-              isAdded
-                ? "bg-[#f5f7f5] text-[#0b0e14]"
-                : "bg-[#987232] text-white hover:bg-[#af853c] shadow-md"
-            }`}
+            onClick={handleReviewInMaps}
+            className="px-3.5 py-1.5 rounded-full bg-[#987232] hover:bg-[#af853c] text-white text-[11px] font-extrabold uppercase tracking-[0.05em] flex items-center gap-1.5 transition-all shadow-md cursor-pointer"
+            title="Dejar reseña en Google Maps"
           >
-            {isAdded ? (
-              <>
-                <Check className="w-3.5 h-3.5" />
-                <span>AGREGADO</span>
-              </>
-            ) : (
-              <>
-                <Plus className="w-3.5 h-3.5" />
-                <span>AGREGAR</span>
-              </>
-            )}
+            <Star className="w-3.5 h-3.5 text-amber-300 fill-amber-300" />
+            <span>RESEÑAR EN MAPS</span>
           </button>
         </div>
       </div>

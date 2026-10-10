@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { Wine, Plus, Check } from 'lucide-react';
+import { Wine, Star } from 'lucide-react';
 
-export default function DestiladosTable({ groups, onAddToOrder, orderItems }) {
+export default function DestiladosTable({ groups }) {
   const [selectedTab, setSelectedTab] = useState("Tequila");
 
   const activeGroup = groups.find(g => g.categoryName === selectedTab) || groups[0];
 
-  const checkIsAdded = (name, type) => {
-    const itemId = `destilado-${name}-${type}`;
-    return orderItems.some(i => i.id === itemId);
+  const handleReviewInMaps = () => {
+    window.open('https://www.google.com/maps/search/?api=1&query=PUA+Brasa+y+Vino', '_blank');
   };
 
   return (
@@ -33,7 +32,7 @@ export default function DestiladosTable({ groups, onAddToOrder, orderItems }) {
             <button
               key={group.categoryName}
               onClick={() => setSelectedTab(group.categoryName)}
-              className={`px-4 py-2 rounded-full text-xs font-extrabold uppercase tracking-[0.05em] whitespace-nowrap transition-all ${
+              className={`px-4 py-2 rounded-full text-xs font-extrabold uppercase tracking-[0.05em] whitespace-nowrap transition-all cursor-pointer ${
                 selectedTab === group.categoryName
                   ? "bg-[#987232] text-white shadow-md"
                   : "bg-[#12141a] text-[#d4d3c9] hover:text-white border border-[#232730]"
@@ -53,13 +52,11 @@ export default function DestiladosTable({ groups, onAddToOrder, orderItems }) {
               <th className="py-3.5 px-4">Destilado / Vino</th>
               <th className="py-3.5 px-4 text-center">Copa</th>
               <th className="py-3.5 px-4 text-center">Botella</th>
+              <th className="py-3.5 px-4 text-right">Reseña</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-[#232730]/60 text-sm">
             {activeGroup.items.map((item, idx) => {
-              const isAddedCopa = checkIsAdded(item.name, 'copa');
-              const isAddedBotella = checkIsAdded(item.name, 'botella');
-
               return (
                 <tr key={idx} className="hover:bg-[#12141a] transition-colors">
                   <td className="py-4 px-4 font-bold text-[#f5f7f5]">
@@ -69,24 +66,7 @@ export default function DestiladosTable({ groups, onAddToOrder, orderItems }) {
                   {/* Copa Cell */}
                   <td className="py-4 px-4 text-center whitespace-nowrap">
                     {item.copa ? (
-                      <div className="flex items-center justify-center gap-2">
-                        <span className="font-extrabold text-[#c89f53]">${item.copa.toLocaleString('es-MX')}</span>
-                        <button
-                          onClick={() => onAddToOrder({
-                            id: `destilado-${item.name}-copa`,
-                            name: `${item.name} (Copa)`,
-                            price: item.copa
-                          })}
-                          className={`p-1.5 rounded-full text-xs font-bold transition-all ${
-                            isAddedCopa 
-                              ? "bg-[#f5f7f5] text-[#0b0e14]" 
-                              : "bg-[#987232] text-white hover:bg-[#af853c]"
-                          }`}
-                          title="Agregar Copa"
-                        >
-                          {isAddedCopa ? <Check className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
-                        </button>
-                      </div>
+                      <span className="font-extrabold text-[#c89f53]">${item.copa.toLocaleString('es-MX')}</span>
                     ) : (
                       <span className="text-[#64635a] text-xs">—</span>
                     )}
@@ -95,27 +75,22 @@ export default function DestiladosTable({ groups, onAddToOrder, orderItems }) {
                   {/* Botella Cell */}
                   <td className="py-4 px-4 text-center whitespace-nowrap">
                     {item.botella ? (
-                      <div className="flex items-center justify-center gap-2">
-                        <span className="font-extrabold text-[#c89f53]">${item.botella.toLocaleString('es-MX')}</span>
-                        <button
-                          onClick={() => onAddToOrder({
-                            id: `destilado-${item.name}-botella`,
-                            name: `${item.name} (Botella)`,
-                            price: item.botella
-                          })}
-                          className={`p-1.5 rounded-full text-xs font-bold transition-all ${
-                            isAddedBotella 
-                              ? "bg-[#f5f7f5] text-[#0b0e14]" 
-                              : "bg-[#987232] text-white hover:bg-[#af853c]"
-                          }`}
-                          title="Agregar Botella"
-                        >
-                          {isAddedBotella ? <Check className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
-                        </button>
-                      </div>
+                      <span className="font-extrabold text-[#c89f53]">${item.botella.toLocaleString('es-MX')}</span>
                     ) : (
                       <span className="text-[#64635a] text-xs">—</span>
                     )}
+                  </td>
+
+                  {/* Reseñar button */}
+                  <td className="py-4 px-4 text-right whitespace-nowrap">
+                    <button
+                      onClick={handleReviewInMaps}
+                      className="px-3 py-1 rounded-full bg-[#987232] hover:bg-[#af853c] text-white text-[10px] font-extrabold uppercase tracking-[0.05em] inline-flex items-center gap-1 transition-all cursor-pointer"
+                      title="Reseñar en Google Maps"
+                    >
+                      <Star className="w-3 h-3 text-amber-300 fill-amber-300" />
+                      <span>Reseñar</span>
+                    </button>
                   </td>
                 </tr>
               );

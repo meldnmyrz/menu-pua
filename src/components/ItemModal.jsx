@@ -1,32 +1,41 @@
-import React, { useState } from 'react';
-import { X, Wine, Clock, Plus, Check, Share2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, Wine, Clock, Star, Share2 } from 'lucide-react';
 
-export default function ItemModal({ item, onClose, onAddToOrder, isAdded }) {
-  const [itemNote, setItemNote] = useState("");
+export default function ItemModal({ item, onClose }) {
   const [copiedNote, setCopiedNote] = useState(false);
+
+  useEffect(() => {
+    if (item) {
+      // Set address bar hash to direct dish link e.g. #/item/cor-3
+      window.location.hash = `#/item/${item.id}`;
+    }
+  }, [item]);
 
   if (!item) return null;
 
   const isWaitTime = item.waitTime || (typeof item.description === 'string' && item.description.includes('Tiempo de espera'));
 
-  const handleAddWithNote = () => {
-    onAddToOrder({
-      ...item,
-      customerNote: itemNote
-    });
+  const handleCloseModal = () => {
+    onClose();
+  };
+
+  const handleReviewInMaps = () => {
+    window.open('https://www.google.com/maps/search/?api=1&query=PUA+Brasa+y+Vino', '_blank');
   };
 
   const shareItem = () => {
+    const shareUrl = `${window.location.origin}${window.location.pathname}#/item/${item.id}`;
+    
     if (navigator.share) {
       navigator.share({
         title: `PÚA Brasa y Vino — ${item.name}`,
-        text: `¡Mira este platillo en PÚA!: ${item.name} - ${typeof item.price === 'number' ? `$${item.price}` : item.price}`,
-        url: window.location.href,
+        text: `¡Mira este platillo en PÚA!: ${item.name} - ${typeof item.price === 'number' ? `$${item.price.toLocaleString('es-MX')} MXN` : item.price}`,
+        url: shareUrl,
       }).catch(() => {});
     } else {
-      navigator.clipboard.writeText(`${item.name} — ${item.description || ''}`);
+      navigator.clipboard.writeText(shareUrl);
       setCopiedNote(true);
-      setTimeout(() => setCopiedNote(false), 2000);
+      setTimeout(() => setCopiedNote(false), 2500);
     }
   };
 
@@ -36,8 +45,8 @@ export default function ItemModal({ item, onClose, onAddToOrder, isAdded }) {
         
         {/* Close Button */}
         <button
-          onClick={onClose}
-          className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-black/80 text-[#f5f7f5] hover:text-[#c89f53] border border-[#232730] transition-all"
+          onClick={handleCloseModal}
+          className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-black/80 text-[#f5f7f5] hover:text-[#c89f53] border border-[#232730] transition-all cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
@@ -97,49 +106,25 @@ export default function ItemModal({ item, onClose, onAddToOrder, isAdded }) {
               </p>
             </div>
           )}
-
-          {/* Custom Note Input */}
-          <div>
-            <label className="block text-xs font-bold uppercase tracking-[0.05em] text-[#d4d3c9] mb-2">
-              Instrucciones para la cocina / mesero (opcional):
-            </label>
-            <input
-              type="text"
-              value={itemNote}
-              onChange={(e) => setItemNote(e.target.value)}
-              placeholder="Ej. Término medio, sin sal, salsa aparte..."
-              className="w-full px-4 py-3 rounded-[12px] bg-[#12141a] border border-[#232730] text-[#f5f7f5] text-sm placeholder-[#9e9d93] focus:outline-none focus:border-[#c89f53]"
-            />
-          </div>
         </div>
 
         {/* Modal Action Buttons Footer */}
-        <div className="p-6 bg-[#050505] border-t border-[#232730] flex items-center justify-between gap-4">
+        <div className="p-6 bg-[#050505] border-t border-[#232730] flex flex-col sm:flex-row items-center justify-between gap-3">
           <button
             onClick={shareItem}
-            className="p-3 rounded-full bg-[#12141a] text-[#f5f7f5] border border-[#232730] flex items-center gap-2 text-xs font-bold uppercase tracking-[0.05em]"
+            className="w-full sm:w-auto px-5 py-3 rounded-full bg-[#12141a] text-[#f5f7f5] border border-[#232730] hover:border-[#c89f53] flex items-center justify-center gap-2 text-xs font-extrabold uppercase tracking-[0.05em] transition-all cursor-pointer"
+            title="Copiar enlace directo al platillo"
           >
-            <Share2 className="w-4 h-4" />
-            <span>{copiedNote ? "¡COPIADO!" : "COMPARTIR"}</span>
+            <Share2 className="w-4 h-4 text-[#c89f53]" />
+            <span>{copiedNote ? "¡ENLACE COPIADO!" : "COMPARTIR PLATILLO"}</span>
           </button>
 
           <button
-            onClick={handleAddWithNote}
-            className={`flex-1 pill-btn-caramel flex items-center justify-center gap-2 text-sm shadow-xl ${
-              isAdded ? "bg-[#f5f7f5] text-black" : ""
-            }`}
+            onClick={handleReviewInMaps}
+            className="w-full sm:flex-1 pill-btn-caramel flex items-center justify-center gap-2 text-xs font-extrabold uppercase tracking-[0.05em] shadow-xl cursor-pointer"
           >
-            {isAdded ? (
-              <>
-                <Check className="w-5 h-5 text-white" />
-                <span>AGREGADO A TU SELECCIÓN</span>
-              </>
-            ) : (
-              <>
-                <Plus className="w-5 h-5 text-white" />
-                <span>AGREGAR A MI SELECCIÓN ({item.price ? `$${typeof item.price === 'number' ? item.price : ''}` : ''})</span>
-              </>
-            )}
+            <Star className="w-4 h-4 text-amber-300 fill-amber-300" />
+            <span>RESEÑAR EN GOOGLE MAPS</span>
           </button>
         </div>
       </div>

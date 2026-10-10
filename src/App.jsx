@@ -17,19 +17,35 @@ export default function App() {
   const [isOrderOpen, setIsOrderOpen] = useState(false);
   const [isCommandMenuOpen, setIsCommandMenuOpen] = useState(false);
 
-  // Synchronize hash routing (e.g. #/section/cortes)
+  // Synchronize hash routing (e.g. #/section/cortes or #/item/cor-3)
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash;
-      if (hash.startsWith('#/section/')) {
+
+      if (hash.startsWith('#/item/')) {
+        const itemId = hash.replace('#/item/', '');
+        if (itemId) {
+          for (const sec of MENU_DATA.sections) {
+            for (const cat of sec.categories) {
+              const foundItem = cat.items?.find((i) => i.id === itemId);
+              if (foundItem) {
+                setActiveSectionId(sec.id);
+                setActiveCategoryId(cat.id);
+                setSelectedItem(foundItem);
+                return;
+              }
+            }
+          }
+        }
+      } else if (hash.startsWith('#/section/')) {
         const catId = hash.replace('#/section/', '');
         if (catId) {
-          // Find which section this category belongs to
           for (const sec of MENU_DATA.sections) {
             const found = sec.categories.find((c) => c.id === catId);
             if (found) {
               setActiveSectionId(sec.id);
               setActiveCategoryId(catId);
+              setSelectedItem(null);
               window.scrollTo({ top: 0, behavior: 'smooth' });
               return;
             }
@@ -37,6 +53,7 @@ export default function App() {
         }
       } else {
         setActiveCategoryId(null);
+        setSelectedItem(null);
       }
     };
 
