@@ -50,19 +50,25 @@ export default function HeroEclipse() {
       {/* Sticky Fullscreen Container */}
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black text-[#f5f7f5] border-b border-[#232730]">
         
-        {/* Background Video (PUA FLAMES.mp4) Edge-to-Edge */}
+        {/* Background Video (PUA BRAND OF.mp4) Edge-to-Edge at 100% Opacity */}
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover scale-105 pointer-events-none z-0 filter brightness-[0.72] contrast-[1.15]"
-          src="/assets/videos/pua_flames.mp4"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none z-0 opacity-100"
+          src="/assets/videos/pua_brand_of.mp4"
         />
 
-        {/* Dynamic Vignette & Gradient Overlays for optimal contrast & flame vibrance */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(5,5,5,0.78)_0%,_rgba(5,5,5,0.35)_55%,_rgba(5,5,5,0.88)_100%)] pointer-events-none z-1" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/75 pointer-events-none z-1" />
+        {/* Minimal edge blend for header & footer, keeping full video vibrancy */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-transparent pointer-events-none z-1 h-32" />
+        <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent pointer-events-none z-1 h-36" />
+
+        {/* Dynamic readability scrim that only activates smoothly when the text reveals */}
+        <div
+          style={{ opacity: textOpacity * 0.55 }}
+          className="absolute inset-0 bg-black/60 pointer-events-none z-1 transition-opacity duration-200"
+        />
 
         {/* Hero Content Layer - Centered with Scroll-Reveal Effect */}
         <div

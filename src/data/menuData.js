@@ -4,7 +4,7 @@ export const MENU_DATA = {
     subtitle: "Brasa y Vino",
     tagline: "Menú Gastronómico & Mixología de Autor",
     description: "Cortes de carne Angus a las brasas, maridajes exclusivos, cocina de mar y mixología contemporánea.",
-    logo: "/assets/images/pua_logo_official.jpg",
+    logo: "/assets/images/material_pua/PUA_LOGO_transparent.png",
     phone: "Reserva en Mesa",
     instagram: "@puabrasayvino"
   },

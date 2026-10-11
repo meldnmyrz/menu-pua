@@ -19,20 +19,13 @@ export default function Footer({ restaurant }) {
           
           {/* Col 1: Brand Info */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl overflow-hidden border border-[#232730] bg-black flex-shrink-0">
-                <img
-                  src={restaurant.logo}
-                  alt="PÚA Logo"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div>
-                <span className="font-bold text-xl text-[#f5f7f5] leading-none block">púa</span>
-                <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#c89f53]">
-                  BRASA Y VINO
-                </span>
-              </div>
+            <div className="flex items-center">
+              <img
+                src={restaurant.logo}
+                alt="PÚA Logo"
+                className="h-16 w-auto object-contain cursor-pointer hover:opacity-90 transition-opacity"
+                onClick={scrollToTop}
+              />
             </div>
             <p className="text-xs text-[#9e9d93] leading-relaxed font-normal">
               Cortes Angus madurados a la brasa, leña de encino, cocina de mar y una cava exclusiva de vinos y mixología de autor.

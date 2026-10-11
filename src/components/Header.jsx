@@ -44,35 +44,18 @@ export default function Header({
       >
         <div className="max-w-[1280px] mx-auto flex items-center justify-between gap-4">
           
-          {/* Left: Official PÚA Logo */}
+          {/* Left: Official PÚA Transparent Logo */}
           <div
             onClick={onBackToHome}
-            className="flex items-center gap-2.5 cursor-pointer group flex-shrink-0"
+            className="flex items-center cursor-pointer group flex-shrink-0 py-0.5"
           >
-            <div className={`rounded-xl overflow-hidden border border-[#27272a] bg-black flex-shrink-0 transition-all ${
-              isScrolled ? "w-8 h-8 sm:w-9 sm:h-9" : "w-10 h-10 sm:w-11 sm:h-11"
-            }`}>
-              <img
-                src={restaurant.logo}
-                alt="PÚA Logo"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-              />
-            </div>
-            <div className="flex flex-col">
-              <div className="flex items-center gap-0.5">
-                <span className={`font-bold font-sans tracking-tight text-white leading-none ${
-                  isScrolled ? "text-xl" : "text-2xl"
-                }`}>
-                  púa
-                </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#cbd5e1] shadow-[0_0_8px_#cbd5e1] ml-0.5 mb-1.5" />
-              </div>
-              {!isScrolled && (
-                <span className="text-[9px] font-extrabold uppercase tracking-[0.25em] text-[#cbd5e1] leading-none mt-0.5">
-                  BRASA Y VINO
-                </span>
-              )}
-            </div>
+            <img
+              src={restaurant.logo}
+              alt="PÚA Logo"
+              className={`object-contain transition-all duration-300 group-hover:opacity-90 ${
+                isScrolled ? "h-9 sm:h-10" : "h-11 sm:h-13"
+              }`}
+            />
           </div>
 
           {/* Center: Navigation Links with Mega Dropdown */}
