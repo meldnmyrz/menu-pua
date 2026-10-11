@@ -54,6 +54,16 @@
   }
 }
 
+/* Suppress iOS Safari native playback button overlay */
+video::-webkit-media-controls-start-playback-button,
+video::-webkit-media-controls-play-button,
+video::-webkit-media-controls {
+  display: none !important;
+  -webkit-appearance: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 /* Shimmering Caramel Gradient Text */
 .gradient-caramel-text {
   background: linear-gradient(135deg, #f5f7f5 0%, #c89f53 50%, #987232 100%);
