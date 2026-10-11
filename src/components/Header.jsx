@@ -32,14 +32,14 @@ export default function Header({
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 w-full transition-all duration-300 pointer-events-none">
+    <header className="fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 pointer-events-none">
       
       {/* Floating Navbar Container */}
       <div
         className={`pointer-events-auto transition-all duration-500 ease-out mx-auto ${
           isScrolled
-            ? "max-w-[1200px] mt-3 px-4 sm:px-6 rounded-full bg-[#050505]/95 backdrop-blur-2xl border border-[#cbd5e1]/30 shadow-[0_20px_50px_rgba(0,0,0,0.95)] py-2 sm:py-2.5 scale-[0.99]"
-            : "max-w-full bg-[#050505] px-4 sm:px-8 border-b border-[#27272a] py-3.5"
+            ? "max-w-[1200px] mt-3 px-4 sm:px-6 rounded-full bg-[#050505]/85 backdrop-blur-2xl border border-[#cbd5e1]/25 shadow-[0_20px_50px_rgba(0,0,0,0.95)] py-2 sm:py-2.5 scale-[0.99]"
+            : "w-full max-w-full bg-transparent px-4 sm:px-8 border-b border-transparent py-4 sm:py-5"
         }`}
       >
         <div className="max-w-[1280px] mx-auto flex items-center justify-between gap-4">
@@ -183,21 +183,16 @@ export default function Header({
             {/* Search Launcher / Command Menu Trigger ⌘K */}
             <button
               onClick={() => setIsCommandMenuOpen(true)}
-              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#121214] border border-[#27272a] text-[#a1a1aa] hover:text-white hover:border-[#cbd5e1] transition-all text-xs cursor-pointer"
+              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-[#d4d3c9] hover:text-white hover:border-white/50 transition-all text-xs cursor-pointer shadow-lg"
               title="Buscar en el menú (⌘K)"
             >
               <Search className="w-3.5 h-3.5 text-[#cbd5e1]" />
               <span className="font-medium hidden sm:inline">Buscar...</span>
-              <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] bg-[#18181b] text-[#cbd5e1] rounded border border-[#27272a] font-mono">⌘K</kbd>
+              <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] bg-black/60 text-[#cbd5e1] rounded border border-white/20 font-mono">⌘K</kbd>
             </button>
           </div>
         </div>
       </div>
-
-      {/* Ambient Silver Glow Line Divider */}
-      {!isScrolled && (
-        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#cbd5e1]/40 to-transparent" />
-      )}
     </header>
   );
 }

@@ -23,7 +23,7 @@ export default function CategoryPage({
   const isItemInOrder = (id) => orderItems.some((i) => i.id === id);
 
   return (
-    <div className="min-h-screen max-w-[1200px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10 animate-fade-in">
+    <div className="min-h-screen max-w-[1200px] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 pb-12 space-y-10 animate-fade-in">
       
       {/* Top Breadcrumbs & Back Bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-[#232730]">

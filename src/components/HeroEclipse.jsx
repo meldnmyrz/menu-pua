@@ -45,7 +45,7 @@ export default function HeroEclipse() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-[145vh] sm:h-[155vh] -mt-[64px]"
+      className="relative w-full h-[145vh] sm:h-[155vh]"
     >
       {/* Sticky Fullscreen Container */}
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black text-[#f5f7f5] border-b border-[#232730]">
@@ -60,8 +60,7 @@ export default function HeroEclipse() {
           src="/assets/videos/pua_brand_of.mp4"
         />
 
-        {/* Minimal edge blend for header & footer, keeping full video vibrancy */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-transparent pointer-events-none z-1 h-32" />
+        {/* Bottom edge blend for seamless transition to page content */}
         <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent pointer-events-none z-1 h-36" />
 
         {/* Dynamic readability scrim that only activates smoothly when the text reveals */}
